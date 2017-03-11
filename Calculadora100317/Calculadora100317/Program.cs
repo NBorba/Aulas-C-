@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Aula0803_WF
+namespace Calculadora100317
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace Aula0803_WF
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmTelaInicial());
+            Application.Run(new formCalc());
         }
     }
 }

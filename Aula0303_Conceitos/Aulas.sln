@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula0303_Conceitos", "Aula0303_Conceitos\Aula0303_Conceitos.csproj", "{9CA69B2B-AC46-4117-88A9-E80ECAE27D4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula0803_WF", "..\Aula0803_WF\Aula0803_WF.csproj", "{FC718C74-8A10-4A58-AA59-83FAEC83535C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9CA69B2B-AC46-4117-88A9-E80ECAE27D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CA69B2B-AC46-4117-88A9-E80ECAE27D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CA69B2B-AC46-4117-88A9-E80ECAE27D4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC718C74-8A10-4A58-AA59-83FAEC83535C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC718C74-8A10-4A58-AA59-83FAEC83535C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC718C74-8A10-4A58-AA59-83FAEC83535C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC718C74-8A10-4A58-AA59-83FAEC83535C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

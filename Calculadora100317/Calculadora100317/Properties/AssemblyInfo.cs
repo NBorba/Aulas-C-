@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Aula0803_WF")]
+[assembly: AssemblyTitle("Calculadora100317")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Aula0803_WF")]
+[assembly: AssemblyProduct("Calculadora100317")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a3111c12-cf2f-4a8f-8f3f-8891cdd20b2b")]
+[assembly: Guid("8c2718e8-d852-4a5a-a39c-21b8cad6f05a")]
 
 // Version information for an assembly consists of the following four values:
 //
