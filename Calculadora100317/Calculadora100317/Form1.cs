@@ -25,7 +25,6 @@ namespace Calculadora100317
             int minusCount = 0;
             int divideCount = 0;
             int multiplyCount = 0;
-
         }
 
         private void btnNumberClick(object sender, EventArgs e)
@@ -78,7 +77,6 @@ namespace Calculadora100317
             }
         }
 
-
         private bool verifyText()
         {
             if (txtOutput.TextLength == 0)
@@ -93,7 +91,6 @@ namespace Calculadora100317
 
             return true;
         }
-
 
         private void clrOperationCount()
         {
