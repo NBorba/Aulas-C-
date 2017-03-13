@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +12,10 @@ namespace Calculadora100317
         private int minusCount;
         private int divideCount;
         private int multiplyCount;
+        private int arrayCount = 0;
+        private int arrayPositionCount = 1;
+        private int tamanhoTextoAnterior = 0;
+        List<int> numbers = new List<int>();
 
         public formCalc()
         {
@@ -41,8 +41,17 @@ namespace Calculadora100317
 
         private void btnOperationClick(object sender, EventArgs e)
         {
+            // Array number count is increased everytime an operation button is clicked
+            
+
             var btnClickedOperation = sender as Button;
-            var canAddOperation = verifyText();
+
+            // Verifies if formula starts with an operation, if it does, formula is invalid
+            bool canAddOperation = verifyText();
+
+            int textLength = 0;
+            string numero = "";
+            string operation = btnClickedOperation.Text;
 
             if (!canAddOperation)
             {
@@ -51,30 +60,30 @@ namespace Calculadora100317
             }
             else
             {
-                    if (btnClickedOperation.Text == "+")
-                    {
-                        txtOutput.Text += btnClickedOperation.Text;
-                        plusCount += 1;
-                    }
+                textLength = txtOutput.TextLength;
+                
+                if (arrayPositionCount == 1)
+                {
+                    numero = txtOutput.Text.Substring(0, textLength);
+                }
+                else
+                {
+                    numero = txtOutput.Text.Substring(tamanhoTextoAnterior+1, textLength-tamanhoTextoAnterior-1);
+                }
+                
+                numbers.Add(Convert.ToInt32(numero));
 
-                    if (btnClickedOperation.Text == "-")
-                    {
-                        txtOutput.Text += btnClickedOperation.Text;
-                        minusCount += 1;
-                    }
+                tamanhoTextoAnterior += numero.Length;
 
-                    if (btnClickedOperation.Text == "*")
-                    {
-                        txtOutput.Text += btnClickedOperation.Text;
-                        multiplyCount += 1;
-                    }
-
-                    if (btnClickedOperation.Text == "/")
-                    {
-                        txtOutput.Text += btnClickedOperation.Text;
-                        divideCount += 1;
-                    }
+                if (arrayCount >= 1)
+                {
+                    int resultado = calculatesValues(operation, numbers[arrayCount - 1], numbers[arrayCount]);
+                    txtOutput.Text += resultado;
+                }
+                txtOutput.Text += operation;
             }
+            arrayCount++;
+            arrayPositionCount++;
         }
 
         private bool verifyText()
@@ -98,7 +107,47 @@ namespace Calculadora100317
             minusCount = 0;
             divideCount = 0;
             multiplyCount = 0;
+            arrayCount = 0;
+            arrayPositionCount = 1;
         }
 
+        private int calculatesValues(string operation,int numberOne, int numberTwo)
+        {
+            int resultado = 0;
+            if (operation == "+")
+            {
+                txtOutput.Clear();
+                clrOperationCount();
+                resultado = numberOne + numberTwo;
+            }
+
+            if (operation == "-")
+            {
+                txtOutput.Text += operation;
+                if (arrayCount > 1)
+                {
+                    resultado = numberOne - numberTwo;
+                }
+            }
+
+            if (operation == "*")
+            {
+                txtOutput.Text += operation;
+                if (arrayCount > 1)
+                {
+                    resultado = numberOne * numberTwo;
+                }
+            }
+
+            if (operation == "/")
+            {
+                txtOutput.Text += operation;
+                if (arrayCount > 1)
+                {
+                    resultado = numberOne / numberTwo;
+                }
+            }
+            return resultado;
+        }
     }
 }
