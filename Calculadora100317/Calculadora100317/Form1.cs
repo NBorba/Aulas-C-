@@ -50,6 +50,7 @@ namespace Calculadora100317
             bool canAddOperation = verifyText();
 
             int textLength = 0;
+            int resultado = 0;
             string numero = "";
             string operation = btnClickedOperation.Text;
 
@@ -77,13 +78,23 @@ namespace Calculadora100317
 
                 if (arrayCount >= 1)
                 {
-                    int resultado = calculatesValues(operation, numbers[arrayCount - 1], numbers[arrayCount]);
+                    resultado = calculatesValues(operation, numbers[arrayCount - 1], numbers[arrayCount]);
+                    numbers[0] = numbers[arrayCount - 1];
+                    numbers[1] = 0;
+                    clrOperationCount();
+                    tamanhoTextoAnterior = resultado.ToString().Length;
                     txtOutput.Text += resultado;
                 }
-                txtOutput.Text += operation;
+
+                
+                
             }
+        if(resultado == 0)
+        {
+            txtOutput.Text += operation;
             arrayCount++;
             arrayPositionCount++;
+        }
         }
 
         private bool verifyText()
@@ -117,17 +128,13 @@ namespace Calculadora100317
             if (operation == "+")
             {
                 txtOutput.Clear();
-                clrOperationCount();
                 resultado = numberOne + numberTwo;
             }
 
             if (operation == "-")
             {
                 txtOutput.Text += operation;
-                if (arrayCount > 1)
-                {
-                    resultado = numberOne - numberTwo;
-                }
+                resultado = numberOne - numberTwo;
             }
 
             if (operation == "*")
