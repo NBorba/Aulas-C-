@@ -245,6 +245,7 @@
             this.btnCalculate.TabIndex = 19;
             this.btnCalculate.Text = "=";
             this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnEqualsClick);
             // 
             // formCalc
             // 
