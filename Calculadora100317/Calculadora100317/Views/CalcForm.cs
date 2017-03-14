@@ -9,6 +9,7 @@ namespace Calculadora100317
     public partial class formCalc : Form
     {
         Util util = new Util();
+        bool hasResult = false;
 
         public formCalc()
         {
@@ -18,30 +19,40 @@ namespace Calculadora100317
         private void btnNumberClick(object sender, EventArgs e)
         {
             var btnClickedNumber = sender as Button;
-            txtOutput.Text += btnClickedNumber.Text;
+
+            if(hasResult == true)
+            {
+                clearOutput();
+                clearResult();
+                txtOutput.Text = btnClickedNumber.Text;
+            }
+            else
+            {
+                txtOutput.Text += btnClickedNumber.Text;
+            } 
         }
 
         private void btnClearOutput(object sender, EventArgs e)
         {
             clearOutput();
+            clearResult();
         }
 
         private void btnOperationClick(object sender, EventArgs e)
         {
             var btnClickedOperation = sender as Button;
             
-            string formula = txtOutput.Text;
+            string formula = txtOutput.Text + btnClickedOperation;
 
             // Verifies if formula starts with an operation, if it does, formula is invalid
             bool canAddOperation = util.verifyText(formula);
 
             if(canAddOperation)
-            { 
-                txtOutput.Text += btnClickedOperation.Text;
-                formula = txtOutput.Text;
+            {
+                txtOutput.Text = formula;
 
-                string[] operators = formula.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" },StringSplitOptions.RemoveEmptyEntries);
-                string[] numbers = formula.Split(new string[] { "+", "-", "*", "/", "="}, StringSplitOptions.RemoveEmptyEntries);
+                string [] operators = formula.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" },StringSplitOptions.RemoveEmptyEntries);
+                string [] numbers = formula.Split(new string[] { "+", "-", "*", "/", "="}, StringSplitOptions.RemoveEmptyEntries);
 
                 int numbersCount = numbers.Count();
                 int operatorsCount = operators.Count();
@@ -55,6 +66,7 @@ namespace Calculadora100317
                     string operatorTwo = operators[1];
 
                     int result = util.calculateFormula(operatorOne, numberOne, numberTwo);
+                    hasResult = true;
 
                     if (btnClickedOperation.Text == "=")
                     {
@@ -64,28 +76,21 @@ namespace Calculadora100317
                     else
                     {
                         clearOutput();
+                        clearResult();
                         txtOutput.Text = result + operatorTwo;
                     }
                 }
             }
         }
 
-        private void btnEqualsClick(object sender, EventArgs e)
-        {
-            //var btnClickedOperation = sender as Button;
-
-            //string text = txtOutput.Text;
-            //string operation = btnClickedOperation.Text;
-
-            //int resultado = util.CalculateFormula(text,operation);
-
-            //txtOutput.Text += resultado;
-
-        }
-
         private void clearOutput()
         {
             txtOutput.Clear();
+        }
+
+        private void clearResult()
+        {
+            hasResult = false;
         }
     
     }

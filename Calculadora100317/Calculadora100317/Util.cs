@@ -11,12 +11,19 @@ namespace Calculadora100317
     {
         public bool verifyText(string output)
         {
+            string[] operators = output.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, StringSplitOptions.RemoveEmptyEntries);
+          
+            if (operators[0] == "=")
+            {
+                return false;
+            }
+
             if (output.Length == 0)
             {
                 return false;
             }
 
-            if (output.EndsWith("+") || output.EndsWith("-") || output.EndsWith("/") || output.EndsWith("*"))
+            if (output.EndsWith("+") || output.EndsWith("-") || output.EndsWith("/") || output.EndsWith("*") || output.EndsWith("="))
             {
                 return false;
             }
@@ -47,6 +54,7 @@ namespace Calculadora100317
             {
                 result = numberOne / numberTwo;
             }
+
             return result;
         }
      
