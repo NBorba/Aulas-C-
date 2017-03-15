@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formCalc));
             this.txtOutput = new System.Windows.Forms.TextBox();
             this.btnOne = new System.Windows.Forms.Button();
             this.btnTwo = new System.Windows.Forms.Button();
@@ -274,9 +275,11 @@
             this.Controls.Add(this.btnOne);
             this.Controls.Add(this.txtOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.Name = "formCalc";
-            this.Text = "Calculator";
+            this.Text = " ";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CalcForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();

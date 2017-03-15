@@ -72,7 +72,14 @@ namespace Calculadora100317
 
             if (operation == "/")
             {
-                result = numberOne / numberTwo;
+                if (numberTwo != 0)
+                {
+                    result = numberOne / numberTwo;
+                }
+                else
+                {
+                    result = 0;
+                }
             }
 
             return result;
@@ -85,7 +92,7 @@ namespace Calculadora100317
                 return true;
             }
 
-                return false;
+            return false;
         }
     }
 }

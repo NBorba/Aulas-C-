@@ -9,7 +9,9 @@ namespace Calculadora100317
     public partial class formCalc : Form
     {
         Util util = new Util();
-        bool hasResult = false;
+
+        // Parameter for verifying if the first number on array is a result from a previous operation
+        bool isNumberFromResult = false;
 
         public formCalc()
         {
@@ -17,18 +19,20 @@ namespace Calculadora100317
         }
 
         private void btnNumberClick(object sender, EventArgs e)
-
         {
-            var btnClickedNumber = sender as Button;
-            string output = txtOutput.Text;
-            bool endsWithOperation = util.verifyEndsWithOp(output);
+           var btnClickedNumber = sender as Button;
+           string output = txtOutput.Text;
+
+           // Verifies if formula ends with an operation, if it does, clears isNumberFromResult parameter to start new operation and not clear the formula
+           bool endsWithOperation = util.verifyEndsWithOp(output);
 
            if (endsWithOperation)
             {
                 clearResult();
             }
 
-            if(hasResult == true)
+           // If the number on screen is a result from a previus operation, resets output and result and sets output to new number
+            if(isNumberFromResult == true)
             {
                 clearOutput();
                 clearResult();
@@ -40,14 +44,17 @@ namespace Calculadora100317
             } 
         }
 
+        // Clears output and result
         private void btnClearOutput(object sender, EventArgs e)
         {
             clearOutput();
             clearResult();
         }
 
+        // Triggers when an operation button is clicked
         private void btnOperationClick(object sender, EventArgs e)
         {
+
             var btnClickedOperation = sender as Button;
 
             string formula = txtOutput.Text + btnClickedOperation.Text;
@@ -57,6 +64,7 @@ namespace Calculadora100317
 
             if(canAddOperation)
             {
+                // Shows formula on screen
                 txtOutput.Text = formula;
 
                 string [] operators = formula.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" },StringSplitOptions.RemoveEmptyEntries);
@@ -70,6 +78,7 @@ namespace Calculadora100317
                 int numberOne = 0;
                 int numberTwo = 0;
 
+                // Both positions from the array are not empty, can calculate
                 if (numbersCount == 2 && operatorsCount == 2)
                 {
                     numberOne = Convert.ToInt32(numbers[0]);
@@ -78,26 +87,37 @@ namespace Calculadora100317
                     operatorOne = operators[0];
                     operatorTwo = operators[1];
 
+                    // Clears output, calculates and shows result...
                     operationsAndNumbersForCalc(operatorOne, operatorTwo, numberOne, numberTwo, btnClickedOperation.Text);
                 }
+                // Condition specifically made to calculate negative first numbers
+                // If there are 3 operators on array and the first one is "-", then calculates the first number as negative instead of using
+                // minus as an operator.
                 else if (operatorsCount > 2 && formula.StartsWith("-"))
                 {
+                    // Adds minus to number so it becomes negative
                     numberOne = Convert.ToInt32("-" + numbers[0]);
                     numberTwo = Convert.ToInt32(numbers[1]);
 
                     operatorOne = operators[1];
                     operatorTwo = operators[2];
 
+                    // Clears output, calculates and shows result...
                     operationsAndNumbersForCalc(operatorOne,operatorTwo,numberOne,numberTwo,btnClickedOperation.Text);
                 } 
             }
         }
 
+        // Clears output, calculates and shows result...
         private void operationsAndNumbersForCalc(string operatorOne, string operatorTwo, int numberOne, int numberTwo, string btnClickedOperation)
         {
+            // Calculates using operation from user
             int result = util.calculateFormula(operatorOne, numberOne, numberTwo);
-            hasResult = true;
 
+            // Sets parameter to true, the number that will show on the output is a result from an operation
+            isNumberFromResult = true;
+            
+            // On equals click clears output and shows result
             if (btnClickedOperation == "=")
             {
                 clearOutput();
@@ -118,9 +138,10 @@ namespace Calculadora100317
 
         private void clearResult()
         {
-            hasResult = false;
+            isNumberFromResult = false;
         }
 
+        // Associates key to functions and buttons
         private void CalcForm_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyData)
