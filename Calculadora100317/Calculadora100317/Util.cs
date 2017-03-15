@@ -12,14 +12,23 @@ namespace Calculadora100317
         public bool verifyText(string output)
         {
             string[] operators = output.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, StringSplitOptions.RemoveEmptyEntries);
-            string [] numbers = output.Split(new string[] { "+", "-", "*", "/", "=" }, StringSplitOptions.None);
+            string[] numbers = output.Split(new string[] { "+", "-", "*", "/", "=" }, StringSplitOptions.None);
 
             int operatorsCount = operators.Count();
             int numbersCount = numbers.Count();
 
             // One operator after another
-            if (operators[0].Length >= 2) {
+            if (operators[0].Length >= 2 ) {
                 return false;
+            }
+
+            // One operator after another on second operator
+            if (operatorsCount >= 2)
+            {
+                if (operators[1].Length >= 2)
+                {
+                    return false;
+                }
             }
             
             // If the first operator is Equals, the formulha is incorrect
@@ -29,7 +38,7 @@ namespace Calculadora100317
             }
             
             // Formula cannot start with an operator except for minus
-            if(output.StartsWith("+") || output.StartsWith("-") || output.StartsWith("/") || output.StartsWith("*") || output.StartsWith("="))
+            if(output.StartsWith("+") || output.StartsWith("/") || output.StartsWith("*") || output.StartsWith("="))
             {
                 return false;
             }
@@ -38,6 +47,7 @@ namespace Calculadora100317
             {
                 return false;
             }
+
             return true;
         }
 
@@ -67,6 +77,15 @@ namespace Calculadora100317
 
             return result;
         }
-     
+        
+        public bool verifyEndsWithOp(string output)
+        {
+            if (output.EndsWith("+") || output.EndsWith("-") || output.EndsWith("*") || output.EndsWith("/") || output.EndsWith("="))
+            {
+                return true;
+            }
+
+                return false;
+        }
     }
 }

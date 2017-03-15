@@ -21,8 +21,9 @@ namespace Calculadora100317
         {
             var btnClickedNumber = sender as Button;
             string output = txtOutput.Text;
+            bool endsWithOperation = util.verifyEndsWithOp(output);
 
-           if (output.EndsWith("+") || output.EndsWith("-") || output.EndsWith("*") || output.EndsWith("/") || output.EndsWith("="))
+           if (endsWithOperation)
             {
                 clearResult();
             }
@@ -64,29 +65,49 @@ namespace Calculadora100317
                 int numbersCount = numbers.Count();
                 int operatorsCount = operators.Count();
 
-                if(numbersCount == 2 && operatorsCount == 2)
+                string operatorOne = "";
+                string operatorTwo = "";
+                int numberOne = 0;
+                int numberTwo = 0;
+
+                if (numbersCount == 2 && operatorsCount == 2)
                 {
-                    int numberOne = Convert.ToInt32(numbers[0]);
-                    int numberTwo = Convert.ToInt32(numbers[1]);
+                    numberOne = Convert.ToInt32(numbers[0]);
+                    numberTwo = Convert.ToInt32(numbers[1]);
 
-                    string operatorOne = operators[0];
-                    string operatorTwo = operators[1];
+                    operatorOne = operators[0];
+                    operatorTwo = operators[1];
 
-                    int result = util.calculateFormula(operatorOne, numberOne, numberTwo);
-                    hasResult = true;
-
-                    if (btnClickedOperation.Text == "=")
-                    {
-                        clearOutput();
-                        txtOutput.Text = result.ToString();
-                    }
-                    else
-                    {
-                        clearOutput();
-                        clearResult();
-                        txtOutput.Text = result + operatorTwo;
-                    }
+                    operationsAndNumbersForCalc(operatorOne, operatorTwo, numberOne, numberTwo, btnClickedOperation.Text);
                 }
+                else if (operatorsCount > 2 && formula.StartsWith("-"))
+                {
+                    numberOne = Convert.ToInt32("-" + numbers[0]);
+                    numberTwo = Convert.ToInt32(numbers[1]);
+
+                    operatorOne = operators[1];
+                    operatorTwo = operators[2];
+
+                    operationsAndNumbersForCalc(operatorOne,operatorTwo,numberOne,numberTwo,btnClickedOperation.Text);
+                } 
+            }
+        }
+
+        private void operationsAndNumbersForCalc(string operatorOne, string operatorTwo, int numberOne, int numberTwo, string btnClickedOperation)
+        {
+            int result = util.calculateFormula(operatorOne, numberOne, numberTwo);
+            hasResult = true;
+
+            if (btnClickedOperation == "=")
+            {
+                clearOutput();
+                txtOutput.Text = result.ToString();
+            }
+            else
+            {
+                clearOutput();
+                clearResult();
+                txtOutput.Text = result + operatorTwo;
             }
         }
 
