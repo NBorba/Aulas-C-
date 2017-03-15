@@ -55,6 +55,7 @@
             // 
             this.txtOutput.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtOutput.Enabled = false;
+            this.txtOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOutput.Location = new System.Drawing.Point(12, 12);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
@@ -253,6 +254,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.ClientSize = new System.Drawing.Size(312, 251);
             this.Controls.Add(this.btnEquals);
             this.Controls.Add(this.btnZero);
@@ -275,6 +277,7 @@
             this.Controls.Add(this.btnOne);
             this.Controls.Add(this.txtOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
