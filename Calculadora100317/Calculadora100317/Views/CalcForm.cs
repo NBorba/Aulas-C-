@@ -41,8 +41,8 @@ namespace Calculadora100317
         private void btnOperationClick(object sender, EventArgs e)
         {
             var btnClickedOperation = sender as Button;
-            
-            string formula = txtOutput.Text + btnClickedOperation;
+
+            string formula = txtOutput.Text + btnClickedOperation.Text;
 
             // Verifies if formula starts with an operation, if it does, formula is invalid
             bool canAddOperation = util.verifyText(formula);
@@ -92,9 +92,81 @@ namespace Calculadora100317
         {
             hasResult = false;
         }
-    
+
+        private void CalcForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.D0:
+                    btnZero.Focus();
+                    btnZero.PerformClick();
+                break;
+                case Keys.D1:
+                    btnOne.Focus();
+                    btnOne.PerformClick();
+                break;
+                case Keys.D2:
+                    btnTwo.Focus();
+                    btnTwo.PerformClick();
+                break;
+                case Keys.D3:
+                    btnThree.Focus();
+                    btnThree.PerformClick();
+                break;
+                case Keys.D4:
+                    btnFour.Focus();
+                    btnFour.PerformClick();
+                break;
+                case Keys.D5:
+                    btnFive.Focus();
+                    btnFive.PerformClick();
+                break;
+                case Keys.D6:
+                    btnSix.Focus();
+                    btnSix.PerformClick();
+                break;
+                case Keys.D7:
+                    btnSeven.Focus();
+                    btnSeven.PerformClick();
+                break;
+                case Keys.D8:
+                    btnEight.Focus();
+                    btnEight.PerformClick();
+                break;
+                case Keys.D9:
+                    btnNine.Focus();
+                    btnNine.PerformClick();
+                break;
+                case Keys.Add:
+                    btnPlus.Focus();
+                    btnPlus.PerformClick();
+                break;
+                case Keys.Subtract:
+                    btnMinus.Focus();
+                    btnMinus.PerformClick();
+                break;
+                case Keys.Divide:
+                    btnDivide.Focus();
+                    btnDivide.PerformClick();
+                break;
+                case Keys.Multiply:
+                    btnMultiply.Focus();
+                    btnMultiply.PerformClick();
+                break;
+                case Keys.Enter:
+                    btnEquals.Focus();
+                    btnEquals.PerformClick();
+                break;
+                case Keys.Back:
+                    btnClear.Focus();
+                    btnClear.PerformClick();
+                break;
+            }
+        }
     }
 }
+
+
           
 
 

@@ -47,7 +47,7 @@
             this.btnPower = new System.Windows.Forms.Button();
             this.btnMem = new System.Windows.Forms.Button();
             this.btnZero = new System.Windows.Forms.Button();
-            this.btnCalculate = new System.Windows.Forms.Button();
+            this.btnEquals = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtOutput
@@ -237,22 +237,22 @@
             this.btnZero.UseVisualStyleBackColor = true;
             this.btnZero.Click += new System.EventHandler(this.btnNumberClick);
             // 
-            // btnCalculate
+            // btnEquals
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(138, 217);
-            this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(36, 30);
-            this.btnCalculate.TabIndex = 19;
-            this.btnCalculate.Text = "=";
-            this.btnCalculate.UseVisualStyleBackColor = true;
-            this.btnCalculate.Click += new System.EventHandler(this.btnOperationClick);
+            this.btnEquals.Location = new System.Drawing.Point(138, 217);
+            this.btnEquals.Name = "btnEquals";
+            this.btnEquals.Size = new System.Drawing.Size(36, 30);
+            this.btnEquals.TabIndex = 19;
+            this.btnEquals.Text = "=";
+            this.btnEquals.UseVisualStyleBackColor = true;
+            this.btnEquals.Click += new System.EventHandler(this.btnOperationClick);
             // 
             // formCalc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(312, 251);
-            this.Controls.Add(this.btnCalculate);
+            this.Controls.Add(this.btnEquals);
             this.Controls.Add(this.btnZero);
             this.Controls.Add(this.btnMem);
             this.Controls.Add(this.btnPower);
@@ -273,8 +273,10 @@
             this.Controls.Add(this.btnOne);
             this.Controls.Add(this.txtOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.Name = "formCalc";
             this.Text = "Calculator";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CalcForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,7 +303,7 @@
         private System.Windows.Forms.Button btnPower;
         private System.Windows.Forms.Button btnMem;
         private System.Windows.Forms.Button btnZero;
-        private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.Button btnEquals;
     }
 }
 

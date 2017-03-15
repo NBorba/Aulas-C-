@@ -11,9 +11,22 @@ namespace Calculadora100317
     {
         public bool verifyText(string output)
         {
-            string[] operators = output.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, StringSplitOptions.RemoveEmptyEntries);
-          
+            string [] operators = output.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, StringSplitOptions.None);
+            string [] numbers = output.Split(new string[] { "+", "-", "*", "/", "=" }, StringSplitOptions.None);
+            int operatorsCount = operators.Count();
+            int numbersCount = numbers.Count();
+            int i;
+
+            if (operatorsCount < numbersCount) {
+                return false;
+            }
+            
             if (operators[0] == "=")
+            {
+                return false;
+            }
+            
+            if(output.StartsWith("+") || output.StartsWith("-") || output.StartsWith("/") || output.StartsWith("*") || output.StartsWith("="))
             {
                 return false;
             }
@@ -22,12 +35,6 @@ namespace Calculadora100317
             {
                 return false;
             }
-
-            if (output.EndsWith("+") || output.EndsWith("-") || output.EndsWith("/") || output.EndsWith("*") || output.EndsWith("="))
-            {
-                return false;
-            }
-
             return true;
         }
 
