@@ -11,21 +11,24 @@ namespace Calculadora100317
     {
         public bool verifyText(string output)
         {
-            string [] operators = output.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, StringSplitOptions.None);
+            string[] operators = output.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, StringSplitOptions.RemoveEmptyEntries);
             string [] numbers = output.Split(new string[] { "+", "-", "*", "/", "=" }, StringSplitOptions.None);
+
             int operatorsCount = operators.Count();
             int numbersCount = numbers.Count();
-            int i;
 
-            if (operatorsCount < numbersCount) {
+            // One operator after another
+            if (operators[0].Length >= 2) {
                 return false;
             }
             
+            // If the first operator is Equals, the formulha is incorrect
             if (operators[0] == "=")
             {
                 return false;
             }
             
+            // Formula cannot start with an operator except for minus
             if(output.StartsWith("+") || output.StartsWith("-") || output.StartsWith("/") || output.StartsWith("*") || output.StartsWith("="))
             {
                 return false;

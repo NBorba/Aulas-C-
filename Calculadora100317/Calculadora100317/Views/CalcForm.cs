@@ -17,8 +17,15 @@ namespace Calculadora100317
         }
 
         private void btnNumberClick(object sender, EventArgs e)
+
         {
             var btnClickedNumber = sender as Button;
+            string output = txtOutput.Text;
+
+           if (output.EndsWith("+") || output.EndsWith("-") || output.EndsWith("*") || output.EndsWith("/") || output.EndsWith("="))
+            {
+                clearResult();
+            }
 
             if(hasResult == true)
             {
@@ -95,7 +102,7 @@ namespace Calculadora100317
 
         private void CalcForm_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
+            switch (e.KeyData)
             {
                 case Keys.D0:
                     btnZero.Focus();
@@ -137,23 +144,23 @@ namespace Calculadora100317
                     btnNine.Focus();
                     btnNine.PerformClick();
                 break;
-                case Keys.Add:
+                case Keys.Oemplus:
                     btnPlus.Focus();
                     btnPlus.PerformClick();
                 break;
-                case Keys.Subtract:
+                case Keys.OemMinus:
                     btnMinus.Focus();
                     btnMinus.PerformClick();
                 break;
-                case Keys.Divide:
+                case Keys.OemQuestion:
                     btnDivide.Focus();
                     btnDivide.PerformClick();
                 break;
-                case Keys.Multiply:
+                case (Keys.Shift | Keys.D8):
                     btnMultiply.Focus();
                     btnMultiply.PerformClick();
                 break;
-                case Keys.Enter:
+                case Keys.Return:
                     btnEquals.Focus();
                     btnEquals.PerformClick();
                 break;
@@ -165,12 +172,3 @@ namespace Calculadora100317
         }
     }
 }
-
-
-          
-
-
-
-
-    
-

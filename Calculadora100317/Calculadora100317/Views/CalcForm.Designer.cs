@@ -66,6 +66,7 @@
             this.btnOne.Name = "btnOne";
             this.btnOne.Size = new System.Drawing.Size(36, 30);
             this.btnOne.TabIndex = 1;
+            this.btnOne.TabStop = false;
             this.btnOne.Text = "1";
             this.btnOne.UseVisualStyleBackColor = true;
             this.btnOne.Click += new System.EventHandler(this.btnNumberClick);
