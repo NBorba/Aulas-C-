@@ -9,7 +9,7 @@ namespace Calculadora100317
 {
     class Util
     {
-        public bool verifyText(string output)
+        public bool validatesFormula(string output)
         {
             string[] operators = output.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, StringSplitOptions.RemoveEmptyEntries);
             string[] numbers = output.Split(new string[] { "+", "-", "*", "/", "=" }, StringSplitOptions.None);
@@ -51,6 +51,7 @@ namespace Calculadora100317
             return true;
         }
 
+        // Calculates operation from user 
         public int calculateFormula(string operation, int numberOne, int numberTwo)
         {
             int result = 0;
@@ -81,10 +82,10 @@ namespace Calculadora100317
                     result = 0;
                 }
             }
-
             return result;
         }
         
+        // True if ends with operation
         public bool verifyEndsWithOp(string output)
         {
             if (output.EndsWith("+") || output.EndsWith("-") || output.EndsWith("*") || output.EndsWith("/") || output.EndsWith("="))
@@ -93,6 +94,19 @@ namespace Calculadora100317
             }
 
             return false;
+        }
+
+        // Splits formula and returns all operators
+        public string[] returnsOperators(string output) {
+            string[] operators = output.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, StringSplitOptions.RemoveEmptyEntries);
+            return operators;
+        }
+
+        // Splits formula and returns all numbers
+        public string[] returnsNumbers(string output)
+        {
+            string[] numbers = output.Split(new string[] { "+", "-", "*", "/", "=" }, StringSplitOptions.RemoveEmptyEntries);
+            return numbers;
         }
     }
 }

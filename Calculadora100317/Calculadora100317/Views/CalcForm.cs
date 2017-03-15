@@ -60,21 +60,22 @@ namespace Calculadora100317
             string formula = txtOutput.Text + btnClickedOperation.Text;
 
             // Verifies if formula starts with an operation, if it does, formula is invalid
-            bool canAddOperation = util.verifyText(formula);
+            bool canAddOperation = util.validatesFormula(formula);
 
             if(canAddOperation)
             {
                 // Shows formula on screen
                 txtOutput.Text = formula;
 
-                string [] operators = formula.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" },StringSplitOptions.RemoveEmptyEntries);
-                string [] numbers = formula.Split(new string[] { "+", "-", "*", "/", "="}, StringSplitOptions.RemoveEmptyEntries);
+                string[] operators = util.returnsOperators(formula);
+                string[] numbers = util.returnsNumbers(formula);
 
                 int numbersCount = numbers.Count();
                 int operatorsCount = operators.Count();
 
                 string operatorOne = "";
                 string operatorTwo = "";
+
                 int numberOne = 0;
                 int numberTwo = 0;
 
