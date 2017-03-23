@@ -1,0 +1,16 @@
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\bin\Debug\Views.exe.config
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\bin\Debug\Views.exe
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\bin\Debug\Views.pdb
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\bin\Debug\Controllers.dll
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\bin\Debug\Models.dll
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\bin\Debug\Controllers.pdb
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\bin\Debug\Models.pdb
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\obj\Debug\Views.csprojResolveAssemblyReference.cache
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\obj\Debug\Views.frmCadastroCliente.resources
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\obj\Debug\Views.frmDetalhesCliente.resources
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\obj\Debug\Views.frmListagemClientes.resources
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\obj\Debug\Views.Properties.Resources.resources
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\obj\Debug\Views.TelaInicial.resources
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\obj\Debug\Views.csproj.GenerateResource.Cache
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\obj\Debug\Views.exe
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Views\obj\Debug\Views.pdb

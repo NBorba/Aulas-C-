@@ -1,0 +1,5 @@
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Models\bin\Debug\Models.dll
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Models\bin\Debug\Models.pdb
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Models\obj\Debug\Models.dll
+C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Models\obj\Debug\Models.pdb
