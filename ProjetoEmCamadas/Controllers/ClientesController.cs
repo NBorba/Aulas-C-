@@ -1,11 +1,12 @@
 ﻿using Models;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Controllers
 {
     public class ClientesController
     {
-        private static List<Cliente> listaClientes = new List<Cliente>();
+        private static  BindingList<Cliente> listaClientes = new BindingList<Cliente>();
 
         public void Adicionar(string nome, string cpf)
         {
@@ -47,17 +48,18 @@ namespace Controllers
         }
 
         public void Excluir(int id)
-        {
-            foreach (Cliente cli in listaClientes)
+        {   
+           foreach (Cliente cli in listaClientes)
             {
                 if (cli.ClienteID == id)
                 {
                     listaClientes.Remove(cli);
+                    break;
                 }
             }
         }
 
-        public List<Cliente> Listar()
+        public BindingList<Cliente> Listar()
         {
             return listaClientes;
         }

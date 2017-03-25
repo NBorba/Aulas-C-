@@ -30,17 +30,21 @@
         {
             this.dgvClientes = new System.Windows.Forms.DataGridView();
             this.lblListaClientes = new System.Windows.Forms.Label();
+            this.Excluir = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Exibir = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvClientes
             // 
+            this.dgvClientes.AllowUserToAddRows = false;
             this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Excluir,
             this.Exibir});
-            this.dgvClientes.Location = new System.Drawing.Point(12, 37);
+            this.dgvClientes.Location = new System.Drawing.Point(17, 37);
             this.dgvClientes.Name = "dgvClientes";
+            this.dgvClientes.ReadOnly = true;
             this.dgvClientes.Size = new System.Drawing.Size(423, 212);
             this.dgvClientes.TabIndex = 0;
             this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
@@ -55,11 +59,17 @@
             this.lblListaClientes.TabIndex = 1;
             this.lblListaClientes.Text = "Lista de Clientes Cadastrados";
             // 
+            // Excluir
+            // 
+            this.Excluir.HeaderText = "Excluir";
+            this.Excluir.Name = "Excluir";
+            this.Excluir.ReadOnly = true;
+            // 
             // Exibir
             // 
-            this.Exibir.DataPropertyName = "Cpf";
             this.Exibir.HeaderText = "Exibir";
             this.Exibir.Name = "Exibir";
+            this.Exibir.ReadOnly = true;
             this.Exibir.Text = "E";
             // 
             // frmListagemClientes
@@ -82,6 +92,7 @@
 
         private System.Windows.Forms.DataGridView dgvClientes;
         private System.Windows.Forms.Label lblListaClientes;
+        private System.Windows.Forms.DataGridViewButtonColumn Excluir;
         private System.Windows.Forms.DataGridViewButtonColumn Exibir;
     }
 }

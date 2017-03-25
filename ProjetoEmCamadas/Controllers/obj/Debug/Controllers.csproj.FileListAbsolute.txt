@@ -5,3 +5,10 @@ C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Controllers\bin\Debug\Models.pdb
 C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Controllers\obj\Debug\Controllers.csprojResolveAssemblyReference.cache
 C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Controllers\obj\Debug\Controllers.dll
 C:\Users\1601129\Desktop\Git\ProjetoEmCamadas\Controllers\obj\Debug\Controllers.pdb
+C:\Users\1601129\Desktop\GitHub\Aulas-C-\ProjetoEmCamadas\Controllers\bin\Debug\Controllers.dll
+C:\Users\1601129\Desktop\GitHub\Aulas-C-\ProjetoEmCamadas\Controllers\bin\Debug\Controllers.pdb
+C:\Users\1601129\Desktop\GitHub\Aulas-C-\ProjetoEmCamadas\Controllers\bin\Debug\Models.dll
+C:\Users\1601129\Desktop\GitHub\Aulas-C-\ProjetoEmCamadas\Controllers\bin\Debug\Models.pdb
+C:\Users\1601129\Desktop\GitHub\Aulas-C-\ProjetoEmCamadas\Controllers\obj\Debug\Controllers.csprojResolveAssemblyReference.cache
+C:\Users\1601129\Desktop\GitHub\Aulas-C-\ProjetoEmCamadas\Controllers\obj\Debug\Controllers.dll
+C:\Users\1601129\Desktop\GitHub\Aulas-C-\ProjetoEmCamadas\Controllers\obj\Debug\Controllers.pdb

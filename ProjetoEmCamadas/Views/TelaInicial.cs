@@ -31,5 +31,19 @@ namespace Views
             listagem.MdiParent = this;
             listagem.Show();
         }
+
+        private void cadastroToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmCadastroCarro cadCarro = new frmCadastroCarro();
+            cadCarro.MdiParent = this;
+            cadCarro.Show();
+        }
+
+        private void listagemToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmListagemCarro listagemCarro = new frmListagemCarro();
+            listagemCarro.MdiParent = this;
+            listagemCarro.Show();
+        }
     }
 }

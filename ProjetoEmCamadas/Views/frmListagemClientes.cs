@@ -28,15 +28,34 @@ namespace Views
 
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (cliController.Listar().Count > 0) 
-            { 
-                int idSelecionado = Convert.ToInt32(((DataGridView)sender).Rows[e.RowIndex].Cells[1].Value);
+            int idSelecionado = Convert.ToInt32(((DataGridView)sender).Rows[e.RowIndex].Cells[2].Value);
 
-                frmDetalhesCliente frmDetCli = new frmDetalhesCliente(idSelecionado);
-                frmDetCli.ShowDialog();
+            if (e.ColumnIndex == 0)
+            {
+                DialogResult result = MessageBox.Show("Você deseja excluir o cliente?","Excluir",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation);
 
-                dgvClientes.DataSource = null;
-                dgvClientes.DataSource = cliController.Listar();
+                if (result.Equals(DialogResult.OK))
+                {                
+                    cliController.Excluir(idSelecionado);
+                    MessageBox.Show("Cliente excluido com sucesso!");
+                    dgvClientes.DataSource = null;
+                    dgvClientes.DataSource = cliController.Listar();
+                }
+                
+                
+            }
+
+            // Botão Editar
+            if (e.ColumnIndex == 1)
+            {
+                if (cliController.Listar().Count > 0)
+                {
+                    frmDetalhesCliente frmDetCli = new frmDetalhesCliente(idSelecionado);
+                    frmDetCli.ShowDialog();
+
+                    dgvClientes.DataSource = null;
+                    dgvClientes.DataSource = cliController.Listar();
+                }
             }
         }
     }
