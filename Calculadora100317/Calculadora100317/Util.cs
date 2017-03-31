@@ -52,35 +52,34 @@ namespace Calculadora100317
         }
 
         // Calculates operation from user 
-        public int calculateFormula(string operation, int numberOne, int numberTwo)
+        public int CalculateFormula(formCalc.Operations? operation, int numberOne, int numberTwo)
         {
             int result = 0;
 
-            if (operation == "+")
+            switch (operation)
             {
-                result = numberOne + numberTwo;
-            }
+                case formCalc.Operations.Add:
+                    result = numberOne + numberTwo;
+                break;
 
-            if (operation == "-")
-            {
-                result = numberOne - numberTwo;
-            }
+                case formCalc.Operations.Subtract:
+                    result = numberOne - numberTwo;
+                break;
 
-            if (operation == "*")
-            {
-                result = numberOne * numberTwo;
-            }
+                case formCalc.Operations.Multiply:
+                    result = numberOne * numberTwo;
+                break;
 
-            if (operation == "/")
-            {
-                if (numberTwo != 0)
-                {
-                    result = numberOne / numberTwo;
-                }
-                else
-                {
-                    result = 0;
-                }
+                case formCalc.Operations.Divide:
+                    if (numberTwo != 0)
+                    {
+                        result = numberOne / numberTwo;
+                    }
+                    else
+                    {
+                        result = 0;
+                    }
+                break;
             }
             return result;
         }
@@ -99,6 +98,7 @@ namespace Calculadora100317
         // Splits formula and returns all operators
         public string[] returnsOperators(string output) {
             string[] operators = output.Split(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, StringSplitOptions.RemoveEmptyEntries);
+
             return operators;
         }
 
@@ -106,6 +106,7 @@ namespace Calculadora100317
         public string[] returnsNumbers(string output)
         {
             string[] numbers = output.Split(new string[] { "+", "-", "*", "/", "=" }, StringSplitOptions.RemoveEmptyEntries);
+
             return numbers;
         }
     }

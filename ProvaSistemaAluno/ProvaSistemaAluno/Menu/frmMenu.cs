@@ -21,7 +21,7 @@ namespace ProvaSistemaAluno
         {
             frmCadastroAluno formCadastroAluno = new frmCadastroAluno();
             formCadastroAluno.MdiParent = this;
-            formCadastroAluno.WindowState = FormWindowState.Maximized;
+
             formCadastroAluno.Show();
 
         }

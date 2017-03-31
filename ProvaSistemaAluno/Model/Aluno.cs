@@ -10,8 +10,8 @@ namespace Model
     {
         public Aluno() {}
 
-        private int id { get; set; }
-        private string cpf { get; set; }
-        private string nome { get; set; }
+        public int id { get; set; }
+        public string nome { get; set; }
+        public string cpf { get; set; }
     }
 }

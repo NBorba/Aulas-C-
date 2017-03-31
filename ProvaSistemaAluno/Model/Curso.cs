@@ -10,9 +10,9 @@ namespace Model
     {
         public Curso() {}
 
-        private int id { get; set; }
-        private int codigo { get; set; }
-        private string nome { get; set; }
-        private string descricao { get; set; }
+        public int id { get; set; }
+        public int codigo { get; set; }
+        public string nome { get; set; }
+        public string descricao { get; set; }
     }
 }

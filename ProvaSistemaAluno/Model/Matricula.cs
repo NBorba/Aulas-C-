@@ -12,7 +12,7 @@ namespace Model
 
         private int idMatricula { get; set; }
         private int idAluno { get; set; }
-        private int idCurso { get; set; }
+        private int idAluno { get; set; }
         private DateTime data { get; set; }
     }
 }

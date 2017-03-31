@@ -209,7 +209,7 @@
             this.btnSquareRoot.Name = "btnSquareRoot";
             this.btnSquareRoot.Size = new System.Drawing.Size(120, 30);
             this.btnSquareRoot.TabIndex = 15;
-            this.btnSquareRoot.Text = "Square Root";
+            this.btnSquareRoot.Text = "√";
             this.btnSquareRoot.UseVisualStyleBackColor = true;
             // 
             // btnPower
@@ -218,7 +218,7 @@
             this.btnPower.Name = "btnPower";
             this.btnPower.Size = new System.Drawing.Size(120, 30);
             this.btnPower.TabIndex = 16;
-            this.btnPower.Text = "Power";
+            this.btnPower.Text = "Potência";
             this.btnPower.UseVisualStyleBackColor = true;
             // 
             // btnMem

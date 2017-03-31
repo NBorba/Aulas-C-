@@ -8,8 +8,22 @@ namespace Calculadora100317
 {
     public partial class formCalc : Form
     {
-        Util util = new Util();
 
+        public enum Operations
+        {
+            Add,
+            Subtract,
+            Multiply,
+            Divide,
+            Equals,
+            SquareRoot,
+            Power
+        }
+
+        public Operations? Operation { get; set; }
+
+        Util util = new Util();
+        
         // Parameter for verifying if the first number on array is a result from a previous operation
         bool isNumberFromResult = false;
 
@@ -44,6 +58,42 @@ namespace Calculadora100317
             } 
         }
 
+        private void btnAddClick()
+        {
+            Operation = Operations.Add;
+        }
+
+        private void btnMinusClick()
+        {
+            Operation = Operations.Subtract;
+        }
+
+        private void btnMultiplyClick()
+        {
+            Operation = Operations.Multiply;
+        }
+
+        private void btnDivideClick()
+        {
+            Operation = Operations.Divide;
+        }
+
+        private void btnEqualsClick()
+        {
+            Operation = Operations.Equals;
+        }
+
+        private void btnSquareRootClick()
+        {
+            Operation = Operations.SquareRoot;
+        }
+
+
+        private void btnPowerClick()
+        {
+            Operation = Operations.Power;
+        }
+
         // Clears output and result
         private void btnClearOutput(object sender, EventArgs e)
         {
@@ -54,7 +104,6 @@ namespace Calculadora100317
         // Triggers when an operation button is clicked
         private void btnOperationClick(object sender, EventArgs e)
         {
-
             var btnClickedOperation = sender as Button;
 
             string formula = txtOutput.Text + btnClickedOperation.Text;
@@ -73,11 +122,10 @@ namespace Calculadora100317
                 int numbersCount = numbers.Count();
                 int operatorsCount = operators.Count();
 
-                string operatorOne = "";
-                string operatorTwo = "";
-
-                int numberOne = 0;
-                int numberTwo = 0;
+                string operatorOne;
+                string operatorTwo;
+                int numberOne;
+                int numberTwo;
 
                 // Both positions from the array are not empty, can calculate
                 if (numbersCount == 2 && operatorsCount == 2)
@@ -89,7 +137,7 @@ namespace Calculadora100317
                     operatorTwo = operators[1];
 
                     // Clears output, calculates and shows result...
-                    operationsAndNumbersForCalc(operatorOne, operatorTwo, numberOne, numberTwo, btnClickedOperation.Text);
+                    validateAndCalculate(operatorOne, operatorTwo, numberOne, numberTwo, btnClickedOperation.Text);
                 }
                 // Condition specifically made to calculate negative first numbers
                 // If there are 3 operators on array and the first one is "-", then calculates the first number as negative instead of using
@@ -104,16 +152,37 @@ namespace Calculadora100317
                     operatorTwo = operators[2];
 
                     // Clears output, calculates and shows result...
-                    operationsAndNumbersForCalc(operatorOne,operatorTwo,numberOne,numberTwo,btnClickedOperation.Text);
+                    validateAndCalculate(operatorOne,operatorTwo,numberOne,numberTwo,btnClickedOperation.Text);
                 } 
             }
         }
 
         // Clears output, calculates and shows result...
-        private void operationsAndNumbersForCalc(string operatorOne, string operatorTwo, int numberOne, int numberTwo, string btnClickedOperation)
+        private void validateAndCalculate(string operatorOne, string operatorTwo, int numberOne, int numberTwo, string btnClickedOperation)
         {
+            switch (operatorOne)
+            {
+                case "+":
+                    Operation = Operations.Add;
+                break;
+
+                case "-":
+                    Operation = Operations.Subtract;
+                break;
+
+                case "*":
+                    Operation = Operations.Multiply;
+                break;
+
+                case "/":
+                    Operation = Operations.Divide;
+                break;
+
+                default:
+                    return;
+            }
             // Calculates using operation from user
-            int result = util.calculateFormula(operatorOne, numberOne, numberTwo);
+            int result = util.CalculateFormula(Operation, numberOne, numberTwo);
 
             // Sets parameter to true, the number that will show on the output is a result from an operation
             isNumberFromResult = true;

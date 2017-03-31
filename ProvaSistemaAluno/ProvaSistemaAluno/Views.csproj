@@ -44,24 +44,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmCadastroAluno.cs">
+    <Compile Include="Aluno\frmCadastroAluno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCadastroAluno.Designer.cs">
+    <Compile Include="Aluno\frmCadastroAluno.Designer.cs">
       <DependentUpon>frmCadastroAluno.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMenu.cs">
+    <Compile Include="Curso\frmCadastroCurso.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMenu.Designer.cs">
+    <Compile Include="Curso\frmCadastroCurso.Designer.cs">
+      <DependentUpon>frmCadastroCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\frmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\frmMenu.Designer.cs">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmCadastroAluno.resx">
+    <EmbeddedResource Include="Aluno\frmCadastroAluno.resx">
       <DependentUpon>frmCadastroAluno.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMenu.resx">
+    <EmbeddedResource Include="Curso\frmCadastroCurso.resx">
+      <DependentUpon>frmCadastroCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
