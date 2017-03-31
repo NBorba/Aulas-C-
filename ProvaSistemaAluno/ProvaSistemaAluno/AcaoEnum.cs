@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace Views
 {
-    public class Enum
+    public class AcaoEnum
     {
         public enum Acao
         {

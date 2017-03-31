@@ -45,7 +45,7 @@
             this.dgvCurso.Location = new System.Drawing.Point(0, -1);
             this.dgvCurso.Name = "dgvCurso";
             this.dgvCurso.ReadOnly = true;
-            this.dgvCurso.Size = new System.Drawing.Size(284, 262);
+            this.dgvCurso.Size = new System.Drawing.Size(1300, 1300);
             this.dgvCurso.TabIndex = 0;
             this.dgvCurso.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCursos_CellContentClick);
             // 
@@ -67,11 +67,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(1276, 997);
             this.Controls.Add(this.dgvCurso);
             this.Name = "frmListagemCurso";
-            this.Text = "frmListagemCurso";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
+            this.Text = "Listagem de cursos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmListagemCurso_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCurso)).EndInit();

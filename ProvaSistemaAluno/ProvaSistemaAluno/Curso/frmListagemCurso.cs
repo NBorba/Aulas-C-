@@ -34,20 +34,29 @@ namespace ProvaSistemaAluno.Aluno
                 // Editar
                 if (e.ColumnIndex == 0)
                 {
-                    frmCurso formEditarCurso = new frmCurso(Model.Enum.Acao.Editar, idSelecionado);
-                    formEditarCurso.Show();
+                    frmCurso formEditarCurso = new frmCurso(Views.AcaoEnum.Acao.Editar, idSelecionado);
+                    formEditarCurso.ShowDialog();
+                    refreshView();
                 }
                 // Excluir
                 else if (e.ColumnIndex == 1)
                 {
-                    frmCurso formExcluirCurso = new frmCurso(Model.Enum.Acao.Excluir, idSelecionado);
-                    formExcluirCurso.Show();
+                    frmCurso formExcluirCurso = new frmCurso(Views.AcaoEnum.Acao.Excluir, idSelecionado);
+                    formExcluirCurso.ShowDialog();
+                    refreshView();
                 }
+                // Visualizar
                 else {
-                    frmCurso formVisualizarCurso = new frmCurso(Model.Enum.Acao.Visualizar, idSelecionado);
-                    formVisualizarCurso.Show();
+                    frmCurso formVisualizarCurso = new frmCurso(Views.AcaoEnum.Acao.Visualizar, idSelecionado);
+                    formVisualizarCurso.ShowDialog();
+                    refreshView();
                 }
             }
+        }
+
+        private void refreshView() {
+            dgvCurso.DataSource = null;
+            dgvCurso.DataSource = cursoController.retornarLista();
         }
     }
 }

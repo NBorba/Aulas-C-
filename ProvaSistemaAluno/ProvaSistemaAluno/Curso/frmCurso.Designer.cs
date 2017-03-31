@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.txtCod = new System.Windows.Forms.TextBox();
             this.lblNome = new System.Windows.Forms.Label();
             this.btnAcao = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -37,6 +36,7 @@
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.lblDesc = new System.Windows.Forms.Label();
+            this.txtCod = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -45,17 +45,9 @@
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(7, 9);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(163, 24);
+            this.lblTitulo.Size = new System.Drawing.Size(56, 24);
             this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "Cadastro de curso";
-            // 
-            // txtCod
-            // 
-            this.txtCod.Location = new System.Drawing.Point(11, 60);
-            this.txtCod.MaxLength = 6;
-            this.txtCod.Name = "txtCod";
-            this.txtCod.Size = new System.Drawing.Size(63, 20);
-            this.txtCod.TabIndex = 1;
+            this.lblTitulo.Text = "Título";
             // 
             // lblNome
             // 
@@ -120,6 +112,14 @@
             this.lblDesc.TabIndex = 9;
             this.lblDesc.Text = "Descrição";
             // 
+            // txtCod
+            // 
+            this.txtCod.Location = new System.Drawing.Point(12, 60);
+            this.txtCod.Mask = "9999999";
+            this.txtCod.Name = "txtCod";
+            this.txtCod.Size = new System.Drawing.Size(52, 20);
+            this.txtCod.TabIndex = 11;
+            // 
             // frmCurso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,6 +127,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(284, 229);
             this.ControlBox = false;
+            this.Controls.Add(this.txtCod);
             this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.lblDesc);
             this.Controls.Add(this.txtNome);
@@ -134,11 +135,10 @@
             this.Controls.Add(this.btnAcao);
             this.Controls.Add(this.lblCPF);
             this.Controls.Add(this.lblNome);
-            this.Controls.Add(this.txtCod);
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmCurso";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Cadastro de curso";
+            this.Text = "Curso";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -148,7 +148,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.TextBox txtCod;
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.Button btnAcao;
         private System.Windows.Forms.Button btnCancelar;
@@ -156,5 +155,6 @@
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Label lblDesc;
+        private System.Windows.Forms.MaskedTextBox txtCod;
     }
 }

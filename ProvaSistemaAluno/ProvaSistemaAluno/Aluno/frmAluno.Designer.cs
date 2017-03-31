@@ -116,7 +116,7 @@
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmAluno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Cadastro de aluno";
+            this.Text = "Aluno";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();

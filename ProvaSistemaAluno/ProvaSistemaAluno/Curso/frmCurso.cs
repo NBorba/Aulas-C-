@@ -30,12 +30,14 @@ namespace ProvaSistemaAluno
         // Ajusta controles dependendo da ação do usuário
         private void ajustaControles(Enum acao)
         {
-            if (acao.Equals(Model.Enum.Acao.Cadastrar))
+            if (acao.Equals(Views.AcaoEnum.Acao.Cadastrar))
             {
                 // Cadastro muda somente o título
                 lblTitulo.Text = "Cadastro de curso";
+
+                btnAcao.Text = "Cadastrar";
             }
-            else if (acao.Equals(Model.Enum.Acao.Editar))
+            else if (acao.Equals(Views.AcaoEnum.Acao.Editar))
             {
                 lblTitulo.Text = "Edição de curso";
                 Model.Curso curso = cursoController.listarItem(idUser);
@@ -44,8 +46,10 @@ namespace ProvaSistemaAluno
                 txtCod.Text = curso.codigo.ToString();
                 txtNome.Text = curso.nome;
                 txtDesc.Text = curso.descricao;
+
+                btnAcao.Text = "Editar";
             }
-            else if (acao.Equals(Model.Enum.Acao.Excluir))
+            else if (acao.Equals(Views.AcaoEnum.Acao.Excluir))
             {
                 lblTitulo.Text = "Excluir curso";
                 Model.Curso curso = cursoController.listarItem(idUser);
@@ -59,6 +63,8 @@ namespace ProvaSistemaAluno
                 txtCod.Enabled = false;
                 txtNome.Enabled = false;
                 txtDesc.Enabled = false;
+
+                btnAcao.Text = "Excluir";
             }
             else
             {
@@ -83,7 +89,7 @@ namespace ProvaSistemaAluno
         private void buttonAcao_Click(object sender, EventArgs e)
         {
             // Baseado no comando do usuário, realiza a ação específica
-            if (acaoUser.Equals(Model.Enum.Acao.Cadastrar))
+            if (acaoUser.Equals(Views.AcaoEnum.Acao.Cadastrar))
             {
                 if (validaCampos())
                 {
@@ -96,7 +102,7 @@ namespace ProvaSistemaAluno
                     MessageBox.Show("Nenhum campo pode ser vazio!");
                 }
             }
-            else if (acaoUser.Equals(Model.Enum.Acao.Editar))
+            else if (acaoUser.Equals(Views.AcaoEnum.Acao.Editar))
             {
                 if (validaCampos())
                 {
@@ -109,7 +115,7 @@ namespace ProvaSistemaAluno
                     MessageBox.Show("Nenhum campo pode ser vazio!");
                 }
             }
-            else if (acaoUser.Equals(Model.Enum.Acao.Excluir))
+            else if (acaoUser.Equals(Views.AcaoEnum.Acao.Excluir))
             {
                 cursoController.remover(idUser);
                 MessageBox.Show("Curso excluido com sucesso!");

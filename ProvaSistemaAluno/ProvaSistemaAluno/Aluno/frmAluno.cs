@@ -23,21 +23,24 @@ namespace ProvaSistemaAluno
         {
             InitializeComponent();
 
+            // Deixa disponível para os outros métodos os objetos que o usuário passou via parâmetro
             acaoUser = acao;
             idUser = id;
 
+            // Ajusta controles dependendo da ação do usuário    
             ajustaControles(acaoUser);
         }
 
-        // Ajusta controles dependendo da ação do usuário
         private void ajustaControles(Enum acao)
         {
-            if (acao.Equals(Model.Enum.Acao.Cadastrar))
+            if (acao.Equals(Views.AcaoEnum.Acao.Cadastrar))
             {
                 // Cadastro muda somente o título
                 lblTitulo.Text = "Cadastro de aluno";
+
+                btnAcao.Text = "Cadastrar";
             }
-            else if (acao.Equals(Model.Enum.Acao.Editar))
+            else if (acao.Equals(Views.AcaoEnum.Acao.Editar))
             {
                 lblTitulo.Text = "Edição de aluno";
                 Model.Aluno aluno = alunoController.listarItem(idUser);
@@ -45,8 +48,10 @@ namespace ProvaSistemaAluno
                 // Mostra os dados do curso que está sendo editado
                 txtNome.Text = aluno.nome;
                 txtCPF.Text = aluno.cpf;
+
+                btnAcao.Text = "Editar";
             }
-            else if (acao.Equals(Model.Enum.Acao.Excluir))
+            else if (acao.Equals(Views.AcaoEnum.Acao.Excluir))
             {
                 lblTitulo.Text = "Excluir aluno";
                 Model.Aluno aluno = alunoController.listarItem(idUser);
@@ -58,6 +63,8 @@ namespace ProvaSistemaAluno
                 // Bloqueia edição de campos
                 txtNome.Enabled = false;
                 txtCPF.Enabled = false;
+
+                btnAcao.Text = "Excluir";
             }
             else
             {
@@ -72,13 +79,15 @@ namespace ProvaSistemaAluno
                 txtNome.Enabled = false;
                 txtCPF.Enabled = false;
                 btnAcao.Enabled = false;
+                btnAcao.Visible = false;
+
                 btnCancelar.Text = "Voltar";
             }
         }
 
         private void buttonAcao_Click(object sender, EventArgs e)
         {
-            if (acaoUser.Equals(Model.Enum.Acao.Cadastrar))
+            if (acaoUser.Equals(Views.AcaoEnum.Acao.Cadastrar))
             {
                 if (validaCampos())
                 {
@@ -99,7 +108,7 @@ namespace ProvaSistemaAluno
                     MessageBox.Show("Nenhum campo pode ser vazio!");
                 }
             }
-            else if (acaoUser.Equals(Model.Enum.Acao.Editar))
+            else if (acaoUser.Equals(Views.AcaoEnum.Acao.Editar))
             {
                 if (validaCampos())
                 {
@@ -120,7 +129,7 @@ namespace ProvaSistemaAluno
                     MessageBox.Show("Nenhum campo pode ser vazio!");
                 }
             }
-            else if (acaoUser.Equals(Model.Enum.Acao.Excluir))
+            else if (acaoUser.Equals(Views.AcaoEnum.Acao.Excluir))
             {
                 alunoController.remover(idUser);
                 MessageBox.Show("Aluno excluido com sucesso!");

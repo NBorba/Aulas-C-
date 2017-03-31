@@ -21,6 +21,38 @@ namespace Util
             CPF = CPF.Replace(",", "").Replace("-", "");
             CPF = CPF.Trim();
 
+            // Números entram como válidos no algoritmo, mas não devem passar na validação
+            switch (CPF)
+            {
+                case "11111111111":
+                    return false;
+
+                case "22222222222":
+                    return false;
+
+                case "33333333333":
+                    return false;
+
+                case "44444444444":
+                    return false;
+
+                case "55555555555":
+                    return false;
+
+                case "66666666666":
+                    return false;
+
+                case "77777777777":
+                    return false;
+
+                case "88888888888":
+                    return false;
+
+                case "99999999999":
+                    return false;
+            }
+
+
             if (CPF.Length != 11)
                 return false;
 

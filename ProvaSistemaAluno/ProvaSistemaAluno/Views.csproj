@@ -68,6 +68,7 @@
     <Compile Include="Curso\frmListagemCurso.Designer.cs">
       <DependentUpon>frmListagemCurso.cs</DependentUpon>
     </Compile>
+    <Compile Include="AcaoEnum.cs" />
     <Compile Include="Menu\frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>

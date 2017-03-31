@@ -21,7 +21,7 @@ namespace ProvaSistemaAluno
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAluno formCadastroAluno = new frmAluno(Model.Enum.Acao.Cadastrar, null);
+            frmAluno formCadastroAluno = new frmAluno(Views.AcaoEnum.Acao.Cadastrar, null);
             formCadastroAluno.MdiParent = this;
 
             formCadastroAluno.Show();
@@ -38,7 +38,7 @@ namespace ProvaSistemaAluno
 
         private void cadastroToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmCurso formCadastroCurso = new frmCurso(Model.Enum.Acao.Cadastrar, null);
+            frmCurso formCadastroCurso = new frmCurso(Views.AcaoEnum.Acao.Cadastrar, null);
             formCadastroCurso.MdiParent = this;
 
             formCadastroCurso.Show();
