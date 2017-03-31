@@ -95,7 +95,7 @@ namespace ProvaSistemaAluno.Cursos
             {
                 if (validaCampos())
                 {
-                    cursoController.adicionar(Convert.ToInt32(txtCod.Text), txtNome.Text, txtDesc.Text);
+                    cursoController.adicionar(Convert.ToInt32(txtCod.Text.Replace(" ", "").Trim()), txtNome.Text.Trim(), txtDesc.Text.Trim());
                     MessageBox.Show("Curso cadastrado com sucesso!");
                     this.Close();
                 }
@@ -108,7 +108,7 @@ namespace ProvaSistemaAluno.Cursos
             {
                 if (validaCampos())
                 {
-                    cursoController.editar(idUser, Convert.ToInt32(txtCod.Text), txtNome.Text, txtDesc.Text);
+                    cursoController.editar(idUser, Convert.ToInt32(txtCod.Text.Replace(" ", "").Trim()), txtNome.Text, txtDesc.Text.Trim());
                     MessageBox.Show("Curso alterado com sucesso");
                     this.Close();
                 }

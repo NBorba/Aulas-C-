@@ -95,7 +95,7 @@ namespace ProvaSistemaAluno.Alunos
                     // Valida o cpf
                     if (Util.Validadores.validarCPF(txtCPF.Text))
                     {
-                        alunoController.adicionar(txtNome.Text, txtCPF.Text);
+                        alunoController.adicionar(txtNome.Text.Trim(), txtCPF.Text);
                         MessageBox.Show("Aluno cadastrado com sucesso!");
                         this.Close();
                     }

@@ -37,27 +37,22 @@ namespace ProvaSistemaAluno.Cursos
                 {
                     frmCurso formEditarCurso = new frmCurso(AcaoEnum.Acao.Editar, idSelecionado);
                     formEditarCurso.ShowDialog();
-                    refreshView();
+                    dgvCurso.Refresh();
                 }
                 // Excluir
                 else if (e.ColumnIndex == 1)
                 {
                     frmCurso formExcluirCurso = new frmCurso(AcaoEnum.Acao.Excluir, idSelecionado);
                     formExcluirCurso.ShowDialog();
-                    refreshView();
+                    dgvCurso.Refresh();
                 }
                 // Visualizar
                 else {
                     frmCurso formVisualizarCurso = new frmCurso(AcaoEnum.Acao.Visualizar, idSelecionado);
                     formVisualizarCurso.ShowDialog();
-                    refreshView();
+                    dgvCurso.Refresh();
                 }
             }
-        }
-
-        private void refreshView() {
-            dgvCurso.DataSource = null;
-            dgvCurso.DataSource = cursoController.retornarLista();
         }
     }
 }
