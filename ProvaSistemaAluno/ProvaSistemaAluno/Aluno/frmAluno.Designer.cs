@@ -1,6 +1,6 @@
 ﻿namespace ProvaSistemaAluno
 {
-    partial class frmCadastroAluno
+    partial class frmAluno
     {
         /// <summary>
         /// Required designer variable.
@@ -33,8 +33,8 @@
             this.lblNome = new System.Windows.Forms.Label();
             this.lblCPF = new System.Windows.Forms.Label();
             this.txtCPF = new System.Windows.Forms.MaskedTextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAcao = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -43,9 +43,9 @@
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(7, 9);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(163, 24);
+            this.lblTitulo.Size = new System.Drawing.Size(56, 24);
             this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "Cadastro de aluno";
+            this.lblTitulo.Text = "Título";
             // 
             // txtNome
             // 
@@ -80,39 +80,41 @@
             this.txtCPF.Size = new System.Drawing.Size(86, 20);
             this.txtCPF.TabIndex = 5;
             // 
-            // button1
+            // btnAcao
             // 
-            this.button1.Location = new System.Drawing.Point(196, 144);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Enviar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAcao.Location = new System.Drawing.Point(196, 144);
+            this.btnAcao.Name = "btnAcao";
+            this.btnAcao.Size = new System.Drawing.Size(75, 23);
+            this.btnAcao.TabIndex = 6;
+            this.btnAcao.Text = "Enviar";
+            this.btnAcao.UseVisualStyleBackColor = true;
+            this.btnAcao.Click += new System.EventHandler(this.buttonAcao_Click);
             // 
-            // button2
+            // btnCancelar
             // 
-            this.button2.Location = new System.Drawing.Point(115, 144);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCancelar.Location = new System.Drawing.Point(115, 144);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
-            // frmCadastroAluno
+            // frmAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(284, 175);
             this.ControlBox = false;
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnAcao);
             this.Controls.Add(this.txtCPF);
             this.Controls.Add(this.lblCPF);
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.lblTitulo);
-            this.Name = "frmCadastroAluno";
+            this.Name = "frmAluno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cadastro de aluno";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -128,7 +130,7 @@
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.Label lblCPF;
         private System.Windows.Forms.MaskedTextBox txtCPF;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAcao;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

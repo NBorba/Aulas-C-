@@ -8,11 +8,12 @@ namespace Model
 {
     public class Enum
     {
-        enum Acao {
+        public enum Acao
+        {
+            Visualizar,
             Cadastrar,
             Excluir,
             Editar,
-            Remover
         }
     }
 }

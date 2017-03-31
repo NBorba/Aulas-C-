@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Controller
 {
     public class CursoController
@@ -18,13 +17,14 @@ namespace Controller
         public void adicionar(int cod, string nome, string desc) {
             Curso curso = new Curso();
             curso.id = cursoList.Count + 1;
+            curso.codigo = cod;
             curso.nome = nome;
             curso.descricao = desc;
 
             cursoList.Add(curso);
         }
 
-        public void editar(int id, int cod, string nome, string desc) {
+        public void editar(int? id, int cod, string nome, string desc) {
             Curso curso = buscarCurso(id);
 
             if (curso != null) {
@@ -32,11 +32,10 @@ namespace Controller
                 curso.codigo = cod;
                 curso.nome = nome;
                 curso.descricao = desc;
-            }
-           
+            }  
         }
 
-        public void remover(int id) {
+        public void remover(int? id) {
             foreach (Curso curso in cursoList) {
                 if (curso.id == id) {
                     cursoList.Remove(curso);
@@ -45,11 +44,16 @@ namespace Controller
             }
         }
 
-        public void listarItem(int id) {
-            buscarCurso(id);
+        public BindingList<Curso> retornarLista()
+        {
+            return cursoList;
         }
 
-        private Curso buscarCurso(int id) {
+        public Curso listarItem(int? id) {
+            return buscarCurso(id);
+        }
+
+        private Curso buscarCurso(int? id) {
             foreach (Curso curso in cursoList) {
                 if (curso.id == id) {
                     return curso;

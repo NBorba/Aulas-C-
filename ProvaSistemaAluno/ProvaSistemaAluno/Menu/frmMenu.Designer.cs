@@ -61,15 +61,16 @@
             // cadastroToolStripMenuItem
             // 
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.cadastroToolStripMenuItem.Text = "Cadastro";
+            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cadastroToolStripMenuItem.Text = "Cadastrar";
             this.cadastroToolStripMenuItem.Click += new System.EventHandler(this.cadastroToolStripMenuItem_Click);
             // 
             // listagemToolStripMenuItem
             // 
             this.listagemToolStripMenuItem.Name = "listagemToolStripMenuItem";
-            this.listagemToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.listagemToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.listagemToolStripMenuItem.Text = "Listagem";
+            this.listagemToolStripMenuItem.Click += new System.EventHandler(this.listagemToolStripMenuItem_Click);
             // 
             // cursoToolStripMenuItem
             // 
@@ -83,14 +84,16 @@
             // cadastroToolStripMenuItem1
             // 
             this.cadastroToolStripMenuItem1.Name = "cadastroToolStripMenuItem1";
-            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.cadastroToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.cadastroToolStripMenuItem1.Text = "Cadastro";
+            this.cadastroToolStripMenuItem1.Click += new System.EventHandler(this.cadastroToolStripMenuItem1_Click);
             // 
             // listagemToolStripMenuItem1
             // 
             this.listagemToolStripMenuItem1.Name = "listagemToolStripMenuItem1";
-            this.listagemToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.listagemToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.listagemToolStripMenuItem1.Text = "Listagem";
+            this.listagemToolStripMenuItem1.Click += new System.EventHandler(this.listagemToolStripMenuItem1_Click);
             // 
             // frmMenu
             // 

@@ -44,17 +44,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aluno\frmCadastroAluno.cs">
+    <Compile Include="Aluno\frmAluno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Aluno\frmCadastroAluno.Designer.cs">
-      <DependentUpon>frmCadastroAluno.cs</DependentUpon>
+    <Compile Include="Aluno\frmAluno.Designer.cs">
+      <DependentUpon>frmAluno.cs</DependentUpon>
     </Compile>
-    <Compile Include="Curso\frmCadastroCurso.cs">
+    <Compile Include="Aluno\frmListagemAluno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Curso\frmCadastroCurso.Designer.cs">
-      <DependentUpon>frmCadastroCurso.cs</DependentUpon>
+    <Compile Include="Aluno\frmListagemAluno.Designer.cs">
+      <DependentUpon>frmListagemAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Curso\frmCurso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Curso\frmCurso.Designer.cs">
+      <DependentUpon>frmCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Curso\frmListagemCurso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Curso\frmListagemCurso.Designer.cs">
+      <DependentUpon>frmListagemCurso.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu\frmMenu.cs">
       <SubType>Form</SubType>
@@ -64,11 +76,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Aluno\frmCadastroAluno.resx">
-      <DependentUpon>frmCadastroAluno.cs</DependentUpon>
+    <EmbeddedResource Include="Aluno\frmAluno.resx">
+      <DependentUpon>frmAluno.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Curso\frmCadastroCurso.resx">
-      <DependentUpon>frmCadastroCurso.cs</DependentUpon>
+    <EmbeddedResource Include="Aluno\frmListagemAluno.resx">
+      <DependentUpon>frmListagemAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Curso\frmCurso.resx">
+      <DependentUpon>frmCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Curso\frmListagemCurso.resx">
+      <DependentUpon>frmListagemCurso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>
@@ -96,9 +114,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Controller\Controller.csproj">
+      <Project>{c62b9580-2778-4bec-8b9d-cb89887d9648}</Project>
+      <Name>Controller</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{e18e6c26-7b59-4ef7-b502-b7e027e1521d}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Util\Util.csproj">
+      <Project>{1424c585-97bc-47b3-ac78-f92f3c858a61}</Project>
+      <Name>Util</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

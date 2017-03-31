@@ -1,6 +1,6 @@
 ﻿namespace ProvaSistemaAluno
 {
-    partial class frmCadastroCurso
+    partial class frmCurso
     {
         /// <summary>
         /// Required designer variable.
@@ -31,8 +31,8 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.txtCod = new System.Windows.Forms.TextBox();
             this.lblNome = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAcao = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.lblCPF = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtDesc = new System.Windows.Forms.TextBox();
@@ -66,23 +66,25 @@
             this.lblNome.TabIndex = 2;
             this.lblNome.Text = "Código";
             // 
-            // button1
+            // btnAcao
             // 
-            this.button1.Location = new System.Drawing.Point(198, 195);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Enviar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAcao.Location = new System.Drawing.Point(198, 195);
+            this.btnAcao.Name = "btnAcao";
+            this.btnAcao.Size = new System.Drawing.Size(75, 23);
+            this.btnAcao.TabIndex = 6;
+            this.btnAcao.Text = "Enviar";
+            this.btnAcao.UseVisualStyleBackColor = true;
+            this.btnAcao.Click += new System.EventHandler(this.buttonAcao_Click);
             // 
-            // button2
+            // btnCancelar
             // 
-            this.button2.Location = new System.Drawing.Point(117, 195);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCancelar.Location = new System.Drawing.Point(117, 195);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
             // lblCPF
             // 
@@ -118,7 +120,7 @@
             this.lblDesc.TabIndex = 9;
             this.lblDesc.Text = "Descrição";
             // 
-            // frmCadastroCurso
+            // frmCurso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -128,13 +130,13 @@
             this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.lblDesc);
             this.Controls.Add(this.txtNome);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnAcao);
             this.Controls.Add(this.lblCPF);
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.txtCod);
             this.Controls.Add(this.lblTitulo);
-            this.Name = "frmCadastroCurso";
+            this.Name = "frmCurso";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cadastro de curso";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -148,8 +150,8 @@
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.TextBox txtCod;
         private System.Windows.Forms.Label lblNome;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAcao;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblCPF;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtDesc;
