@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Util;
 
-namespace ProvaSistemaAluno.Aluno
+namespace ProvaSistemaAluno.Cursos
 {
     public partial class frmListagemCurso : Form
     {
@@ -34,20 +35,20 @@ namespace ProvaSistemaAluno.Aluno
                 // Editar
                 if (e.ColumnIndex == 0)
                 {
-                    frmCurso formEditarCurso = new frmCurso(Views.AcaoEnum.Acao.Editar, idSelecionado);
+                    frmCurso formEditarCurso = new frmCurso(AcaoEnum.Acao.Editar, idSelecionado);
                     formEditarCurso.ShowDialog();
                     refreshView();
                 }
                 // Excluir
                 else if (e.ColumnIndex == 1)
                 {
-                    frmCurso formExcluirCurso = new frmCurso(Views.AcaoEnum.Acao.Excluir, idSelecionado);
+                    frmCurso formExcluirCurso = new frmCurso(AcaoEnum.Acao.Excluir, idSelecionado);
                     formExcluirCurso.ShowDialog();
                     refreshView();
                 }
                 // Visualizar
                 else {
-                    frmCurso formVisualizarCurso = new frmCurso(Views.AcaoEnum.Acao.Visualizar, idSelecionado);
+                    frmCurso formVisualizarCurso = new frmCurso(AcaoEnum.Acao.Visualizar, idSelecionado);
                     formVisualizarCurso.ShowDialog();
                     refreshView();
                 }

@@ -9,9 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Util;
+using Model;
 
 
-namespace ProvaSistemaAluno
+namespace ProvaSistemaAluno.Alunos
 {
     public partial class frmAluno : Form
     {
@@ -33,17 +34,17 @@ namespace ProvaSistemaAluno
 
         private void ajustaControles(Enum acao)
         {
-            if (acao.Equals(Views.AcaoEnum.Acao.Cadastrar))
+            if (acao.Equals(AcaoEnum.Acao.Cadastrar))
             {
                 // Cadastro muda somente o título
                 lblTitulo.Text = "Cadastro de aluno";
 
                 btnAcao.Text = "Cadastrar";
             }
-            else if (acao.Equals(Views.AcaoEnum.Acao.Editar))
+            else if (acao.Equals(AcaoEnum.Acao.Editar))
             {
                 lblTitulo.Text = "Edição de aluno";
-                Model.Aluno aluno = alunoController.listarItem(idUser);
+                Aluno aluno = alunoController.listarItem(idUser);
 
                 // Mostra os dados do curso que está sendo editado
                 txtNome.Text = aluno.nome;
@@ -51,10 +52,10 @@ namespace ProvaSistemaAluno
 
                 btnAcao.Text = "Editar";
             }
-            else if (acao.Equals(Views.AcaoEnum.Acao.Excluir))
+            else if (acao.Equals(AcaoEnum.Acao.Excluir))
             {
                 lblTitulo.Text = "Excluir aluno";
-                Model.Aluno aluno = alunoController.listarItem(idUser);
+                Aluno aluno = alunoController.listarItem(idUser);
 
                 // Mostra os dados do curso que está sendo excluído
                 txtNome.Text = aluno.nome;
@@ -69,7 +70,7 @@ namespace ProvaSistemaAluno
             else
             {
                 lblTitulo.Text = "Visualizar aluno";
-                Model.Aluno aluno = alunoController.listarItem(idUser);
+                Aluno aluno = alunoController.listarItem(idUser);
 
                 // Mostra os dados do curso que está sendo visualizado
                 txtNome.Text = aluno.nome;
@@ -87,12 +88,12 @@ namespace ProvaSistemaAluno
 
         private void buttonAcao_Click(object sender, EventArgs e)
         {
-            if (acaoUser.Equals(Views.AcaoEnum.Acao.Cadastrar))
+            if (acaoUser.Equals(AcaoEnum.Acao.Cadastrar))
             {
                 if (validaCampos())
                 {
                     // Valida o cpf
-                    if (Util.Util.validarCPF(txtCPF.Text))
+                    if (Util.Validadores.validarCPF(txtCPF.Text))
                     {
                         alunoController.adicionar(txtNome.Text, txtCPF.Text);
                         MessageBox.Show("Aluno cadastrado com sucesso!");
@@ -108,12 +109,12 @@ namespace ProvaSistemaAluno
                     MessageBox.Show("Nenhum campo pode ser vazio!");
                 }
             }
-            else if (acaoUser.Equals(Views.AcaoEnum.Acao.Editar))
+            else if (acaoUser.Equals(AcaoEnum.Acao.Editar))
             {
                 if (validaCampos())
                 {
                     // Valida o cpf
-                    if (Util.Util.validarCPF(txtCPF.Text))
+                    if (Validadores.validarCPF(txtCPF.Text))
                     {
                         alunoController.editar(idUser, txtNome.Text.Trim(), txtCPF.Text.Trim());
                         MessageBox.Show("Aluno alterado com sucesso");
@@ -129,7 +130,7 @@ namespace ProvaSistemaAluno
                     MessageBox.Show("Nenhum campo pode ser vazio!");
                 }
             }
-            else if (acaoUser.Equals(Views.AcaoEnum.Acao.Excluir))
+            else if (acaoUser.Equals(AcaoEnum.Acao.Excluir))
             {
                 alunoController.remover(idUser);
                 MessageBox.Show("Aluno excluido com sucesso!");

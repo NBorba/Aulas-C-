@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Util
 {
-    public class Util
+    public class Validadores
     {
         public static bool validarCPF(string CPF)
         {

@@ -1,6 +1,6 @@
-﻿namespace ProvaSistemaAluno.Aluno
+﻿namespace ProvaSistemaAluno.Alunos
 {
-    partial class frmListagemCurso
+    partial class frmListagemAluno
     {
         /// <summary>
         /// Required designer variable.
@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvCurso = new System.Windows.Forms.DataGridView();
+            this.dgvAlunos = new System.Windows.Forms.DataGridView();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Remover = new System.Windows.Forms.DataGridViewButtonColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCurso)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvCurso
+            // dgvAlunos
             // 
-            this.dgvCurso.AllowUserToAddRows = false;
-            this.dgvCurso.AllowUserToDeleteRows = false;
-            this.dgvCurso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCurso.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvAlunos.AllowUserToAddRows = false;
+            this.dgvAlunos.AllowUserToDeleteRows = false;
+            this.dgvAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAlunos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Editar,
             this.Remover});
-            this.dgvCurso.Location = new System.Drawing.Point(0, -1);
-            this.dgvCurso.Name = "dgvCurso";
-            this.dgvCurso.ReadOnly = true;
-            this.dgvCurso.Size = new System.Drawing.Size(1300, 1300);
-            this.dgvCurso.TabIndex = 0;
-            this.dgvCurso.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCursos_CellContentClick);
+            this.dgvAlunos.Location = new System.Drawing.Point(0, -1);
+            this.dgvAlunos.Name = "dgvAlunos";
+            this.dgvAlunos.ReadOnly = true;
+            this.dgvAlunos.Size = new System.Drawing.Size(1300, 1300);
+            this.dgvAlunos.TabIndex = 0;
+            this.dgvAlunos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlunos_CellContentClick);
             // 
             // Editar
             // 
@@ -63,25 +63,24 @@
             this.Remover.ReadOnly = true;
             this.Remover.Width = 120;
             // 
-            // frmListagemCurso
+            // frmListagemAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 997);
-            this.Controls.Add(this.dgvCurso);
-            this.Name = "frmListagemCurso";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
-            this.Text = "Listagem de cursos";
+            this.Controls.Add(this.dgvAlunos);
+            this.Name = "frmListagemAluno";
+            this.Text = "Listagem de alunos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmListagemCurso_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCurso)).EndInit();
+            this.Load += new System.EventHandler(this.frmListagemAluno_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvCurso;
+        private System.Windows.Forms.DataGridView dgvAlunos;
         private System.Windows.Forms.DataGridViewButtonColumn Editar;
         private System.Windows.Forms.DataGridViewButtonColumn Remover;
     }

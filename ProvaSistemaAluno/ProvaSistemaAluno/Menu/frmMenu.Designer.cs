@@ -1,4 +1,4 @@
-﻿namespace ProvaSistemaAluno
+﻿namespace ProvaSistemaAluno.Menu
 {
     partial class frmMenu
     {

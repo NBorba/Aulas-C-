@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Model;
-using ProvaSistemaAluno.Aluno;
+using ProvaSistemaAluno.Alunos;
+using ProvaSistemaAluno.Cursos;
+using Util;
 
-namespace ProvaSistemaAluno
+namespace ProvaSistemaAluno.Menu
 {
     public partial class frmMenu : Form
     {
@@ -21,7 +15,7 @@ namespace ProvaSistemaAluno
 
         private void cadastroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAluno formCadastroAluno = new frmAluno(Views.AcaoEnum.Acao.Cadastrar, null);
+            frmAluno formCadastroAluno = new frmAluno(AcaoEnum.Acao.Cadastrar, null);
             formCadastroAluno.MdiParent = this;
 
             formCadastroAluno.Show();
@@ -38,7 +32,7 @@ namespace ProvaSistemaAluno
 
         private void cadastroToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmCurso formCadastroCurso = new frmCurso(Views.AcaoEnum.Acao.Cadastrar, null);
+            frmCurso formCadastroCurso = new frmCurso(AcaoEnum.Acao.Cadastrar, null);
             formCadastroCurso.MdiParent = this;
 
             formCadastroCurso.Show();

@@ -44,49 +44,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aluno\frmAluno.cs">
+    <Compile Include="Alunos\frmAluno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Aluno\frmAluno.Designer.cs">
+    <Compile Include="Alunos\frmAluno.Designer.cs">
       <DependentUpon>frmAluno.cs</DependentUpon>
     </Compile>
-    <Compile Include="Aluno\frmListagemAluno.cs">
+    <Compile Include="Alunos\frmListagemAluno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Aluno\frmListagemAluno.Designer.cs">
+    <Compile Include="Alunos\frmListagemAluno.Designer.cs">
       <DependentUpon>frmListagemAluno.cs</DependentUpon>
     </Compile>
-    <Compile Include="Curso\frmCurso.cs">
+    <Compile Include="Cursos\frmCurso.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Curso\frmCurso.Designer.cs">
+    <Compile Include="Cursos\frmCurso.Designer.cs">
       <DependentUpon>frmCurso.cs</DependentUpon>
     </Compile>
-    <Compile Include="Curso\frmListagemCurso.cs">
+    <Compile Include="Cursos\frmListagemCurso.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Curso\frmListagemCurso.Designer.cs">
+    <Compile Include="Cursos\frmListagemCurso.Designer.cs">
       <DependentUpon>frmListagemCurso.cs</DependentUpon>
     </Compile>
-    <Compile Include="AcaoEnum.cs" />
     <Compile Include="Menu\frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Menu\frmMenu.Designer.cs">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Menu\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Aluno\frmAluno.resx">
+    <EmbeddedResource Include="Alunos\frmAluno.resx">
       <DependentUpon>frmAluno.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Aluno\frmListagemAluno.resx">
+    <EmbeddedResource Include="Alunos\frmListagemAluno.resx">
       <DependentUpon>frmListagemAluno.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Curso\frmCurso.resx">
+    <EmbeddedResource Include="Cursos\frmCurso.resx">
       <DependentUpon>frmCurso.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Curso\frmListagemCurso.resx">
+    <EmbeddedResource Include="Cursos\frmListagemCurso.resx">
       <DependentUpon>frmListagemCurso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\frmMenu.resx">
