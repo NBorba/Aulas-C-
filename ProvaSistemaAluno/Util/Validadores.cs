@@ -18,7 +18,7 @@ namespace Util
             int resto;
 
             CPF = CPF.Trim();
-            CPF = CPF.Replace(",", "").Replace("-", "");
+            CPF = CPF.Replace(".", "").Replace("-", "");
             CPF = CPF.Trim();
 
             // Números entram como válidos no algoritmo, mas não devem passar na validação
@@ -51,7 +51,6 @@ namespace Util
                 case "99999999999":
                     return false;
             }
-
 
             if (CPF.Length != 11)
                 return false;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCurso = new System.Windows.Forms.DataGridView();
             this.Editar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Remover = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -51,10 +52,16 @@
             // 
             // Editar
             // 
+            this.Editar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Honeydew;
+            this.Editar.DefaultCellStyle = dataGridViewCellStyle1;
             this.Editar.HeaderText = "Editar";
             this.Editar.Name = "Editar";
             this.Editar.ReadOnly = true;
-            this.Editar.Width = 121;
+            this.Editar.Text = "";
+            this.Editar.UseColumnTextForButtonValue = true;
+            this.Editar.Width = 40;
             // 
             // Remover
             // 
