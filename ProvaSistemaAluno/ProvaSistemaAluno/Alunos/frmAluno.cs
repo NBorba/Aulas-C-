@@ -44,7 +44,7 @@ namespace ProvaSistemaAluno.Alunos
             else if (acao.Equals(AcaoEnum.Acao.Editar))
             {
                 lblTitulo.Text = "Edição de aluno";
-                Aluno aluno = alunoController.listarItem(idUser);
+                Aluno aluno = alunoController.listarItem(idUser.Value);
 
                 // Mostra os dados do curso que está sendo editado
                 txtNome.Text = aluno.nome;
@@ -55,7 +55,7 @@ namespace ProvaSistemaAluno.Alunos
             else if (acao.Equals(AcaoEnum.Acao.Excluir))
             {
                 lblTitulo.Text = "Excluir aluno";
-                Aluno aluno = alunoController.listarItem(idUser);
+                Aluno aluno = alunoController.listarItem(idUser.Value);
 
                 // Mostra os dados do curso que está sendo excluído
                 txtNome.Text = aluno.nome;
@@ -70,7 +70,7 @@ namespace ProvaSistemaAluno.Alunos
             else
             {
                 lblTitulo.Text = "Visualizar aluno";
-                Aluno aluno = alunoController.listarItem(idUser);
+                Aluno aluno = alunoController.listarItem(idUser.Value);
 
                 // Mostra os dados do curso que está sendo visualizado
                 txtNome.Text = aluno.nome;
@@ -93,7 +93,7 @@ namespace ProvaSistemaAluno.Alunos
                 if (validaCampos())
                 {
                     // Valida o cpf
-                    if (Util.Validadores.validarCPF(txtCPF.Text))
+                    if (Validadores.validarCPF(txtCPF.Text))
                     {
                         alunoController.adicionar(txtNome.Text.Trim(), txtCPF.Text);
                         MessageBox.Show("Aluno cadastrado com sucesso!");
@@ -116,7 +116,7 @@ namespace ProvaSistemaAluno.Alunos
                     // Valida o cpf
                     if (Validadores.validarCPF(txtCPF.Text))
                     {
-                        alunoController.editar(idUser, txtNome.Text.Trim(), txtCPF.Text.Trim());
+                        alunoController.editar(idUser.Value, txtNome.Text.Trim(), txtCPF.Text.Trim());
                         MessageBox.Show("Aluno alterado com sucesso");
                         this.Close();
                     }
@@ -132,7 +132,7 @@ namespace ProvaSistemaAluno.Alunos
             }
             else if (acaoUser.Equals(AcaoEnum.Acao.Excluir))
             {
-                alunoController.remover(idUser);
+                alunoController.remover(idUser.Value);
                 MessageBox.Show("Aluno excluido com sucesso!");
                 this.Close();
             }

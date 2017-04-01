@@ -24,7 +24,7 @@ namespace Controller
             alunoList.Add(aluno);
         }
 
-        public void editar(int? id, string nome, string cpf)
+        public void editar(int id, string nome, string cpf)
         {
             Aluno aluno = buscarAluno(id);
 
@@ -36,7 +36,7 @@ namespace Controller
             }
         }
 
-        public void remover(int? id)
+        public void remover(int id)
         {
             foreach (Aluno aluno in alunoList)
             {
@@ -48,7 +48,7 @@ namespace Controller
             }
         }
 
-        public Aluno listarItem(int? id)
+        public Aluno listarItem(int id)
         {
             return buscarAluno(id);
         }
@@ -58,7 +58,7 @@ namespace Controller
             return alunoList;
         }
 
-        private Aluno buscarAluno(int? id)
+        private Aluno buscarAluno(int id)
         {
             foreach (Aluno aluno in alunoList)
             {
