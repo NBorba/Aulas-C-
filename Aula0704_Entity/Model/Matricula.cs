@@ -10,7 +10,6 @@ namespace Model
     {
         public Matricula() {}
 
-
         public int Id{ get; set; }
 
         public int idCurso { get; set; }

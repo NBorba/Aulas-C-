@@ -28,12 +28,18 @@ namespace Controller
             return context.Alunos.Find(id);
         }
 
-        public static void EditarBanco(Aluno aluno) {
+        public static void EditarBanco(int id, Aluno aluno) {
+            Aluno dadosAntigosAluno = BuscarPorIdBanco(id);
+            if(dadosAntigosAluno != null){
+                dadosAntigosAluno.nome = aluno.nome;
+                dadosAntigosAluno.cpf = aluno.cpf;
+            }
+
             context.Entry(aluno).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
         }
 
-        public void ExcluirBanco(int id) 
+        public static void ExcluirBanco(int id) 
         {
             Aluno a = BuscarPorIdBanco(id);
             if (a != null) 
