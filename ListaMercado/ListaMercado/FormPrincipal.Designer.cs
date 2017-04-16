@@ -67,6 +67,7 @@
             this.verTodasToolStripMenuItem.Name = "verTodasToolStripMenuItem";
             this.verTodasToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
             this.verTodasToolStripMenuItem.Text = "Ver todas";
+            this.verTodasToolStripMenuItem.Click += new System.EventHandler(this.verTodasToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 

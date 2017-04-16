@@ -30,25 +30,29 @@
         {
             this.listProdutos = new System.Windows.Forms.ListBox();
             this.btnAdicionar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.listAdicionados = new System.Windows.Forms.ListBox();
-            this.lblTitulo = new System.Windows.Forms.Label();
-            this.lblObservacao = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnCadastrar = new System.Windows.Forms.Button();
+            this.comboBoxCategoriaProdutos = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dgvAdicionados = new System.Windows.Forms.DataGridView();
+            this.Remover = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.txtNomeLista = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdicionados)).BeginInit();
             this.SuspendLayout();
             // 
             // listProdutos
             // 
+            this.listProdutos.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.listProdutos.FormattingEnabled = true;
             this.listProdutos.ItemHeight = 20;
-            this.listProdutos.Location = new System.Drawing.Point(21, 129);
+            this.listProdutos.Location = new System.Drawing.Point(21, 169);
             this.listProdutos.Name = "listProdutos";
-            this.listProdutos.Size = new System.Drawing.Size(253, 584);
+            this.listProdutos.Size = new System.Drawing.Size(253, 664);
             this.listProdutos.TabIndex = 0;
             // 
             // btnAdicionar
             // 
-            this.btnAdicionar.Location = new System.Drawing.Point(331, 373);
+            this.btnAdicionar.Location = new System.Drawing.Point(332, 432);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(145, 31);
             this.btnAdicionar.TabIndex = 1;
@@ -56,69 +60,90 @@
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.buttonAdicionar_Click);
             // 
-            // button2
+            // btnCadastrar
             // 
-            this.button2.Location = new System.Drawing.Point(331, 422);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(145, 31);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Remover item";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Location = new System.Drawing.Point(842, 861);
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(195, 38);
+            this.btnCadastrar.TabIndex = 6;
+            this.btnCadastrar.Text = "Cadastrar";
+            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.buttonCadastrar_Click);
             // 
-            // listAdicionados
+            // comboBoxCategoriaProdutos
             // 
-            this.listAdicionados.FormattingEnabled = true;
-            this.listAdicionados.ItemHeight = 20;
-            this.listAdicionados.Location = new System.Drawing.Point(527, 129);
-            this.listAdicionados.Name = "listAdicionados";
-            this.listAdicionados.Size = new System.Drawing.Size(253, 584);
-            this.listAdicionados.TabIndex = 3;
+            this.comboBoxCategoriaProdutos.FormattingEnabled = true;
+            this.comboBoxCategoriaProdutos.Location = new System.Drawing.Point(111, 124);
+            this.comboBoxCategoriaProdutos.Name = "comboBoxCategoriaProdutos";
+            this.comboBoxCategoriaProdutos.Size = new System.Drawing.Size(275, 28);
+            this.comboBoxCategoriaProdutos.TabIndex = 12;
+            this.comboBoxCategoriaProdutos.SelectedIndexChanged += new System.EventHandler(this.comboBoxCategoriaProdutos_SelectedIndexChanged);
             // 
-            // lblTitulo
+            // label1
             // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(12, 38);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(374, 52);
-            this.lblTitulo.TabIndex = 4;
-            this.lblTitulo.Text = "Escolher produtos";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(18, 128);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 20);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Categoria";
             // 
-            // lblObservacao
+            // dgvAdicionados
             // 
-            this.lblObservacao.AutoSize = true;
-            this.lblObservacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblObservacao.Location = new System.Drawing.Point(12, 746);
-            this.lblObservacao.Name = "lblObservacao";
-            this.lblObservacao.Size = new System.Drawing.Size(750, 20);
-            this.lblObservacao.TabIndex = 5;
-            this.lblObservacao.Text = "Observacao:  Para aumentar a quantidade do mesmo item na lista clique em \"Adicion" +
-    "ar item\"";
+            this.dgvAdicionados.AllowUserToAddRows = false;
+            this.dgvAdicionados.AllowUserToDeleteRows = false;
+            this.dgvAdicionados.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvAdicionados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAdicionados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Remover});
+            this.dgvAdicionados.Location = new System.Drawing.Point(524, 124);
+            this.dgvAdicionados.Name = "dgvAdicionados";
+            this.dgvAdicionados.RowTemplate.Height = 28;
+            this.dgvAdicionados.Size = new System.Drawing.Size(513, 664);
+            this.dgvAdicionados.TabIndex = 17;
+            this.dgvAdicionados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdicionados_CellContentClick);
             // 
-            // button3
+            // Remover
             // 
-            this.button3.Location = new System.Drawing.Point(590, 791);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(190, 38);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Cadastrar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.Remover.HeaderText = "Remover";
+            this.Remover.Name = "Remover";
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(12, 32);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(493, 52);
+            this.lblTitle.TabIndex = 18;
+            this.lblTitle.Text = "De um nome a sua lista:";
+            // 
+            // txtNomeLista
+            // 
+            this.txtNomeLista.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNomeLista.Location = new System.Drawing.Point(525, 29);
+            this.txtNomeLista.Name = "txtNomeLista";
+            this.txtNomeLista.Size = new System.Drawing.Size(512, 57);
+            this.txtNomeLista.TabIndex = 19;
             // 
             // FormCadastroLista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 854);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.lblObservacao);
-            this.Controls.Add(this.lblTitulo);
-            this.Controls.Add(this.listAdicionados);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(1049, 911);
+            this.Controls.Add(this.txtNomeLista);
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.dgvAdicionados);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBoxCategoriaProdutos);
+            this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.listProdutos);
             this.Name = "FormCadastroLista";
             this.Text = "Cadastro de Lista";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdicionados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,10 +153,12 @@
 
         private System.Windows.Forms.ListBox listProdutos;
         private System.Windows.Forms.Button btnAdicionar;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListBox listAdicionados;
-        private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Label lblObservacao;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnCadastrar;
+        private System.Windows.Forms.ComboBox comboBoxCategoriaProdutos;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dgvAdicionados;
+        private System.Windows.Forms.DataGridViewButtonColumn Remover;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.TextBox txtNomeLista;
     }
 }

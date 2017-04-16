@@ -24,5 +24,12 @@ namespace ListaMercado
             formCadastroLista.MdiParent = this;
             formCadastroLista.Show();
         }
+
+        private void verTodasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListagemListas formListagemListas = new FormListagemListas();
+            formListagemListas.MdiParent = this;
+            formListagemListas.Show();
+        }
     }
 }

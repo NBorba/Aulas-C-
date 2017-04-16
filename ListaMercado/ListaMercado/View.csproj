@@ -57,6 +57,18 @@
     <Compile Include="Lista\FormCadastroLista.Designer.cs">
       <DependentUpon>FormCadastroLista.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lista\FormListagemListas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista\FormListagemListas.Designer.cs">
+      <DependentUpon>FormListagemListas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lista\FormVisualizarLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista\FormVisualizarLista.Designer.cs">
+      <DependentUpon>FormVisualizarLista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormPrincipal.resx">
@@ -64,6 +76,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Lista\FormCadastroLista.resx">
       <DependentUpon>FormCadastroLista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista\FormListagemListas.resx">
+      <DependentUpon>FormListagemListas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista\FormVisualizarLista.resx">
+      <DependentUpon>FormVisualizarLista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

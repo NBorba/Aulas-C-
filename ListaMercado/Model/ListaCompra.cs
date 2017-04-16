@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Produto
+    public class ListaCompra
     {
-        public int IdProduto { get; set; }
-        public int IdCategoria { get; set; }
-        public string NomeProduto { get; set; }
+        public int IdLista { get; set; }
+        public string NomeLista { get; set; }
     }
 }
