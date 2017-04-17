@@ -22,6 +22,8 @@ namespace ListaMercado.Lista
         {
             InitializeComponent();
 
+            listaController.ApagaProdutosAdicionados();
+
             DataGridViewComboBoxColumn comboBoxQuantidade = new DataGridViewComboBoxColumn();
             comboBoxQuantidade.HeaderText = "Quantidade";
             comboBoxQuantidade.Name = "comboBoxQuantidade";
@@ -98,11 +100,11 @@ namespace ListaMercado.Lista
         {
             if (String.IsNullOrEmpty(txtNomeLista.Text.Trim()))
             {
-                MessageBox.Show("O nome da lista nao pode ser vazio");
+                MessageBox.Show("O nome da lista não pode ser vazio");
             }
             else if (listaController.RetornaProdutosAdicionados().Count == 0)
             {
-                MessageBox.Show("Voce deve adicionar pelo menos um produto na lista de compras!");
+                MessageBox.Show("Você deve adicionar pelo menos um produto na lista de compras!");
             }
             else
             {
@@ -110,7 +112,7 @@ namespace ListaMercado.Lista
                 {
                     ProdutosLista produtosLista = new ProdutosLista();
                     produtosLista.ProdutoId = Convert.ToInt32(dgvAdicionados.Rows[i].Cells[2].Value);
-                    produtosLista.Quantidade = Convert.ToInt32(dgvAdicionados.Rows[i].Cells[3].Value);
+                    produtosLista.Quantidade = Convert.ToInt32(dgvAdicionados.Rows[i].Cells[1].Value);
                     listaController.CadastraProdutoEQuantidadeLista(produtosLista);
                 }
 

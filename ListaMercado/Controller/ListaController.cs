@@ -33,12 +33,51 @@ namespace Controller
             return contexto.Listas.ToList();
         }
 
-        public List<Produto> RetornaProdutosListaBanco(int idLista)
+        private ListaCompra BuscarPorId(int IdLista)
+        {
+            return contexto.Listas.Find(IdLista);
+        }
+
+        private IEnumerable<dynamic> BuscaProdutosListaPorId(int idLista)
         {
             return (from produtoslista in contexto.ProdutosLista
                     join produtos in contexto.Produto on produtoslista.ProdutoId equals produtos.ProdutoId
                     where produtoslista.ListaCompraId.Equals(idLista)
-                    select produtos).ToList<Produto>();
+                    select new {
+                        produtos.NomeProduto,
+                        produtoslista.Quantidade
+                    }).ToList();
+        }
+
+        private List<ProdutosLista> BuscaTodosProdutosListaPorId(int IdLista)
+        {
+            return (from produtoslista in contexto.ProdutosLista
+                    join produtos in contexto.Produto on produtoslista.ProdutoId equals produtos.ProdutoId
+                    where produtoslista.ListaCompraId.Equals(IdLista)
+                    select produtoslista).ToList();
+        }
+
+        public IEnumerable<dynamic> RetornaProdutosListaBanco(int IdLista)
+        {
+            return BuscaProdutosListaPorId(IdLista);
+        }
+        
+
+        public ListaCompra RetornaListaEspecifica(int IdLista)
+        {
+            return BuscarPorId(IdLista);
+        }
+
+        public void ApagarLista(int IdLista)
+        {
+            contexto.Entry(BuscarPorId(IdLista)).State = System.Data.Entity.EntityState.Deleted;
+            foreach (ProdutosLista p in BuscaTodosProdutosListaPorId(IdLista))
+            {
+                contexto.Entry(p).State = System.Data.Entity.EntityState.Deleted;
+            }
+            
+            contexto.SaveChanges();
+
         }
 
         public void CadastrarProdutoLista(Produto produto)
@@ -60,6 +99,11 @@ namespace Controller
         public BindingList<Produto> RetornaProdutosAdicionados()
         {
             return ProdutosAdicionadosList;
+        }
+
+        public void ApagaProdutosAdicionados()
+        {
+            ProdutosAdicionadosList.Clear();
         }
 
         public void RemoverProdutoAdicionado(int IdProduto)

@@ -29,5 +29,10 @@ namespace Controller
                                 select produto).ToList<Produto>();
             return produtosCategoriaUsuario;
         }
+
+        public List<Produto> RetornarTodosProdutosBanco()
+        {
+            return contexto.Produto.ToList();
+        }
     }
 }

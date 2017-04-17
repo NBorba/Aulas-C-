@@ -21,6 +21,7 @@ namespace ListaMercado.Lista
             idLista = id;
             InitializeComponent();
 
+            lblTitulo.Text = listaController.RetornaListaEspecifica(idLista).NomeLista.ToString();
             dgvProdutos.DataSource = listaController.RetornaProdutosListaBanco(idLista);
         }
     }
