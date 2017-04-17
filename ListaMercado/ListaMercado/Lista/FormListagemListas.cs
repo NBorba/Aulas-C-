@@ -19,7 +19,7 @@ namespace ListaMercado.Lista
         {
             InitializeComponent();
 
-            dgvListas.DataSource = listaController.RetornarListas();
+            dgvListas.DataSource = listaController.RetornarListasBanco();
             dgvListas.Columns[1].Visible = false;
         }
 

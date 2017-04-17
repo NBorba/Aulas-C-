@@ -46,7 +46,7 @@
             this.dgvListas.Name = "dgvListas";
             this.dgvListas.ReadOnly = true;
             this.dgvListas.RowTemplate.Height = 28;
-            this.dgvListas.Size = new System.Drawing.Size(505, 514);
+            this.dgvListas.Size = new System.Drawing.Size(589, 514);
             this.dgvListas.TabIndex = 0;
             this.dgvListas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListas_CellContentClick);
             // 
@@ -70,7 +70,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 627);
+            this.ClientSize = new System.Drawing.Size(613, 627);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.dgvListas);
             this.Name = "FormListagemListas";

@@ -1,4 +1,5 @@
 ﻿using Model;
+using Model.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,19 +11,20 @@ namespace Controller
 {
     public class CategoriaController
     {
-        public static BindingList<CategoriaProduto> categoriaList = new BindingList<CategoriaProduto>();
+        private static Contexto contexto = new Contexto();
 
-        public void AdicionarCategoria(string name)
+        // Banco de dados
+        public void AdicionarCategoriasIniciais(string NomeCategoria)
         {
-            CategoriaProduto categoria = new CategoriaProduto();
-            categoria.IdCategoria = categoriaList.Count + 1;
-            categoria.NomeCategoria = name;
-            categoriaList.Add(categoria);
+            Categoria categoria = new Categoria();
+            categoria.NomeCategoria = NomeCategoria;
+            contexto.Categorias.Add(categoria);
+            contexto.SaveChanges();
         }
 
-        public BindingList<CategoriaProduto> RetornaCategorias()
+        public List<Categoria> RetornaCategoriasBanco()
         {
-            return categoriaList;
+            return contexto.Categorias.ToList();
         }
     }
 }

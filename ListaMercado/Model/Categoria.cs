@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class CategoriaProduto
+    public class Categoria
     {
-        public int IdCategoria { get; set; }
+        public int CategoriaId { get; set; }
         public string NomeCategoria { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Model;
+using Model.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,57 +11,77 @@ namespace Controller
 {
     public class ListaController
     {
-        public static BindingList<ListaCompra> ListaComprasList = new BindingList<ListaCompra>();
-        public static BindingList<ListaProduto> ListaProdutosList = new BindingList<ListaProduto>();
-        ProdutoController produtoController = new ProdutoController();
+        private static Contexto contexto = new Contexto();
+        private static BindingList<Produto> ProdutosAdicionadosList = new BindingList<Produto>();
+        private static BindingList<ProdutosLista> ProdutosAdicionadosQuantidadeList = new BindingList<ProdutosLista>();
 
-        public void CadastrarLista(string nome)
+        public void CadastrarListaBanco(string NomeLista, BindingList<ProdutosLista> Produtos)
         {
             ListaCompra lista = new ListaCompra();
-            lista.IdLista = ListaComprasList.Count + 1;
-            lista.NomeLista = nome;
-            ListaComprasList.Add(lista);
-        }
+            lista.NomeLista = NomeLista;
+            contexto.Listas.Add(lista);
 
-        public void CadastrarProdutosLista(int IdProduto, int Quantidade)
-        {
-            ListaProduto lista = new ListaProduto();
-            lista.IdLista = ListaComprasList.Count;
-            lista.IdProduto = IdProduto;
-            lista.Quantidade = Quantidade;
-            ListaProdutosList.Add(lista);
-        }
-
-        public BindingList<ProdutoQuantidade> RetornarProdutos(int IdLista)
-        {
-            BindingList<ProdutoQuantidade> produtoQuantidadeList = new BindingList<ProdutoQuantidade>();
-            foreach (ListaProduto p in ListaProdutosList)
+            foreach (ProdutosLista p in Produtos)
             {
-                Produto produto = produtoController.AcharProdutoPorID(p.IdProduto);
-                ProdutoQuantidade prod = new ProdutoQuantidade();
-                prod.nomeProduto = produto.NomeProduto;
-                prod.quantidade = p.Quantidade;
-                produtoQuantidadeList.Add(prod);
+                contexto.ProdutosLista.Add(p);
             }
-            return produtoQuantidadeList;
+            contexto.SaveChanges();
         }
 
-        public BindingList<ListaCompra> RetornarListas()
+        public List<ListaCompra> RetornarListasBanco()
         {
-            return ListaComprasList;
+            return contexto.Listas.ToList();
         }
 
-        private ListaCompra BuscaPorID(int id)
+        public List<Produto> RetornaProdutosListaBanco(int idLista)
         {
-            foreach (ListaCompra lc in ListaComprasList)
+            return (from produtoslista in contexto.ProdutosLista
+                    join produtos in contexto.Produto on produtoslista.ProdutoId equals produtos.ProdutoId
+                    where produtoslista.ListaCompraId.Equals(idLista)
+                    select produtos).ToList<Produto>();
+        }
+
+        public void CadastrarProdutoLista(Produto produto)
+        {
+            bool existe = false;
+            foreach(Produto p in ProdutosAdicionadosList)
             {
-                if (lc.IdLista == id)
+                if (p.ProdutoId == produto.ProdutoId)
                 {
-                    return lc;
+                    existe = true;
                 }
             }
-            return null;
+            if (!existe)
+            {
+                ProdutosAdicionadosList.Add(produto);
+            }
         }
 
+        public BindingList<Produto> RetornaProdutosAdicionados()
+        {
+            return ProdutosAdicionadosList;
+        }
+
+        public void RemoverProdutoAdicionado(int IdProduto)
+        {
+            foreach (Produto p in ProdutosAdicionadosList)
+            {
+                if (p.ProdutoId == IdProduto)
+                {
+                    ProdutosAdicionadosList.Remove(p);
+                    break;
+                }
+            }
+        }
+
+        public void CadastraProdutoEQuantidadeLista(ProdutosLista produto)
+        {
+            ProdutosAdicionadosQuantidadeList.Add(produto);
+        }
+
+        public BindingList<ProdutosLista> RetornarListaProdutoEQuantidade()
+        {
+            return ProdutosAdicionadosQuantidadeList;
+        }
     }
 }

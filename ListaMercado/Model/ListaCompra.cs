@@ -9,7 +9,9 @@ namespace Model
 {
     public class ListaCompra
     {
-        public int IdLista { get; set; }
+        public int ListaCompraId { get; set; }
         public string NomeLista { get; set; }
+
+        public virtual ICollection<ProdutosLista> ProdutosLista { get; set; }
     }
 }
