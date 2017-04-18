@@ -1,11 +1,7 @@
 ﻿using Model;
 using Model.DAL;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Controller
 {
@@ -16,7 +12,7 @@ namespace Controller
         public void AdicionarProdutoBanco(string NomeProduto, int CategoriaID)
         {
             Produto Produto = new Produto();
-            Produto.NomeProduto = NomeProduto;
+            Produto.ProdutoNome = NomeProduto;
             Produto.CategoriaId = CategoriaID;
             contexto.Produto.Add(Produto);
             contexto.SaveChanges();
@@ -30,7 +26,7 @@ namespace Controller
             return produtosCategoriaUsuario;
         }
 
-        public List<Produto> RetornarTodosProdutosBanco()
+        public ICollection<Produto> RetornarTodosProdutosBanco()
         {
             return contexto.Produto.ToList();
         }

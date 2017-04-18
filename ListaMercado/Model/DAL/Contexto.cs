@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 
 namespace Model.DAL
 {
@@ -18,5 +13,7 @@ namespace Model.DAL
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<ListaCompra> Listas { get; set; }
         public DbSet<ProdutosLista> ProdutosLista { get; set; }
+        public DbSet<Mercado> Mercados { get; set; }
+        public DbSet<MercadoProduto> MercadoProduto { get; set; }
     }
 }

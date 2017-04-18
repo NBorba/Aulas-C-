@@ -13,27 +13,27 @@ namespace Controller
     {
         private static Contexto contexto = new Contexto();
         private static BindingList<Produto> ProdutosAdicionadosList = new BindingList<Produto>();
-        private static BindingList<ProdutosLista> ProdutosAdicionadosQuantidadeList = new BindingList<ProdutosLista>();
+        private static BindingList<ProdutosLista> ProdutosQuantidadeList = new BindingList<ProdutosLista>();
 
         public void CadastrarListaBanco(string NomeLista, BindingList<ProdutosLista> Produtos)
         {
             ListaCompra lista = new ListaCompra();
-            lista.NomeLista = NomeLista;
+            lista.ListaCompraNome = NomeLista;
             contexto.Listas.Add(lista);
 
             foreach (ProdutosLista p in Produtos)
             {
                 contexto.ProdutosLista.Add(p);
             }
-            contexto.SaveChanges();
+           contexto.SaveChanges();
         }
 
-        public List<ListaCompra> RetornarListasBanco()
+        public ICollection<ListaCompra> RetornarListasBanco()
         {
             return contexto.Listas.ToList();
         }
 
-        private ListaCompra BuscarPorId(int IdLista)
+        private ListaCompra BuscarListaPorId(int IdLista)
         {
             return contexto.Listas.Find(IdLista);
         }
@@ -44,12 +44,12 @@ namespace Controller
                     join produtos in contexto.Produto on produtoslista.ProdutoId equals produtos.ProdutoId
                     where produtoslista.ListaCompraId.Equals(idLista)
                     select new {
-                        produtos.NomeProduto,
+                        produtos.ProdutoNome,
                         produtoslista.Quantidade
                     }).ToList();
         }
 
-        private List<ProdutosLista> BuscaTodosProdutosListaPorId(int IdLista)
+        private ICollection<ProdutosLista> BuscaTodosProdutosListaPorId(int IdLista)
         {
             return (from produtoslista in contexto.ProdutosLista
                     join produtos in contexto.Produto on produtoslista.ProdutoId equals produtos.ProdutoId
@@ -62,28 +62,29 @@ namespace Controller
             return BuscaProdutosListaPorId(IdLista);
         }
         
-
         public ListaCompra RetornaListaEspecifica(int IdLista)
         {
-            return BuscarPorId(IdLista);
+            return BuscarListaPorId(IdLista);
         }
 
-        public void ApagarLista(int IdLista)
+        public void ApagarListaBanco(int IdLista)
         {
-            contexto.Entry(BuscarPorId(IdLista)).State = System.Data.Entity.EntityState.Deleted;
-            foreach (ProdutosLista p in BuscaTodosProdutosListaPorId(IdLista))
+            if (BuscarListaPorId(IdLista) != null)
             {
-                contexto.Entry(p).State = System.Data.Entity.EntityState.Deleted;
+                contexto.Entry(BuscarListaPorId(IdLista)).State = System.Data.Entity.EntityState.Deleted;
+                foreach (ProdutosLista p in BuscaTodosProdutosListaPorId(IdLista))
+                {
+                    contexto.Entry(p).State = System.Data.Entity.EntityState.Deleted;
+                }
+                contexto.SaveChanges();
             }
-            
-            contexto.SaveChanges();
-
         }
 
+        // Listas locais
         public void CadastrarProdutoLista(Produto produto)
         {
             bool existe = false;
-            foreach(Produto p in ProdutosAdicionadosList)
+            foreach (Produto p in ProdutosAdicionadosList)
             {
                 if (p.ProdutoId == produto.ProdutoId)
                 {
@@ -94,16 +95,6 @@ namespace Controller
             {
                 ProdutosAdicionadosList.Add(produto);
             }
-        }
-
-        public BindingList<Produto> RetornaProdutosAdicionados()
-        {
-            return ProdutosAdicionadosList;
-        }
-
-        public void ApagaProdutosAdicionados()
-        {
-            ProdutosAdicionadosList.Clear();
         }
 
         public void RemoverProdutoAdicionado(int IdProduto)
@@ -118,14 +109,25 @@ namespace Controller
             }
         }
 
+        public BindingList<Produto> RetornaProdutosAdicionados()
+        {
+            return ProdutosAdicionadosList;
+        }
+
+        public void ApagaProdutosAdicionados()
+        {
+            ProdutosAdicionadosList.Clear();
+        }
+
+        // Lista de produto e quantidade
         public void CadastraProdutoEQuantidadeLista(ProdutosLista produto)
         {
-            ProdutosAdicionadosQuantidadeList.Add(produto);
+            ProdutosQuantidadeList.Add(produto);
         }
 
         public BindingList<ProdutosLista> RetornarListaProdutoEQuantidade()
         {
-            return ProdutosAdicionadosQuantidadeList;
+            return ProdutosQuantidadeList;
         }
     }
 }

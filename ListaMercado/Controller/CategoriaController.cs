@@ -1,11 +1,7 @@
 ﻿using Model;
 using Model.DAL;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Controller
 {
@@ -17,12 +13,12 @@ namespace Controller
         public void AdicionarCategoriasIniciais(string NomeCategoria)
         {
             Categoria categoria = new Categoria();
-            categoria.NomeCategoria = NomeCategoria;
+            categoria.CategoriaNome = NomeCategoria;
             contexto.Categorias.Add(categoria);
             contexto.SaveChanges();
         }
 
-        public List<Categoria> RetornaCategoriasBanco()
+        public ICollection<Categoria> RetornaCategoriasBanco()
         {
             return contexto.Categorias.ToList();
         }

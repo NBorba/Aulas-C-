@@ -1,13 +1,6 @@
 ﻿using Controller;
 using Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ListaMercado.Lista
@@ -55,7 +48,7 @@ namespace ListaMercado.Lista
             comboBoxQuantidade.Items.Add("25");
 
             comboBoxCategoriaProdutos.DataSource = categoriaController.RetornaCategoriasBanco();
-            comboBoxCategoriaProdutos.DisplayMember = "NomeCategoria";
+            comboBoxCategoriaProdutos.DisplayMember = "CategoriaNome";
 
             dgvAdicionados.DataSource = listaController.RetornaProdutosAdicionados();
             dgvAdicionados.Columns.Add(comboBoxQuantidade);
@@ -78,7 +71,7 @@ namespace ListaMercado.Lista
         {
             Categoria categoria = (Categoria)comboBoxCategoriaProdutos.SelectedItem;
             listProdutos.DataSource = produtoController.RetornarProdutosEspecificosBanco(categoria.CategoriaId);
-            listProdutos.DisplayMember = "NomeProduto";
+            listProdutos.DisplayMember = "ProdutoNome";
         }
 
         private void dgvAdicionados_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -112,7 +105,15 @@ namespace ListaMercado.Lista
                 {
                     ProdutosLista produtosLista = new ProdutosLista();
                     produtosLista.ProdutoId = Convert.ToInt32(dgvAdicionados.Rows[i].Cells[2].Value);
-                    produtosLista.Quantidade = Convert.ToInt32(dgvAdicionados.Rows[i].Cells[1].Value);
+                    // Se estiver no valor nulo, muda de 0 pra 1
+                    if (Convert.ToInt32(dgvAdicionados.Rows[i].Cells[1].Value) == 0)
+                    {
+                        produtosLista.Quantidade = 1;
+                    }
+                    else
+                    {
+                        produtosLista.Quantidade = Convert.ToInt32(dgvAdicionados.Rows[i].Cells[1].Value);
+                    }
                     listaController.CadastraProdutoEQuantidadeLista(produtosLista);
                 }
 

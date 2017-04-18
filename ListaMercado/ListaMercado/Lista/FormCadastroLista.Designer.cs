@@ -108,7 +108,7 @@
             this.dgvAdicionados.Margin = new System.Windows.Forms.Padding(2);
             this.dgvAdicionados.Name = "dgvAdicionados";
             this.dgvAdicionados.RowTemplate.Height = 28;
-            this.dgvAdicionados.Size = new System.Drawing.Size(342, 437);
+            this.dgvAdicionados.Size = new System.Drawing.Size(447, 437);
             this.dgvAdicionados.TabIndex = 17;
             this.dgvAdicionados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdicionados_CellContentClick);
             // 

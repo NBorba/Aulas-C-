@@ -1,12 +1,8 @@
 ﻿using Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ListaMercado.Lista
@@ -18,8 +14,9 @@ namespace ListaMercado.Lista
         public FormListagemListas()
         {
             InitializeComponent();
-
-            dgvListas.DataSource = listaController.RetornarListasBanco();
+            var list = new List<ListaCompra>(listaController.RetornarListasBanco());
+            var bindinglist = new BindingList<ListaCompra>(list);
+            dgvListas.DataSource = bindinglist;
             dgvListas.Columns[2].Visible = false;
             dgvListas.Columns[4].Visible = false;
         }
@@ -40,7 +37,8 @@ namespace ListaMercado.Lista
                         break;
 
                     case 1:
-                        listaController.ApagarLista(idSelecionado);
+                        listaController.ApagarListaBanco(idSelecionado);
+                        dgvListas.Refresh();
                         break;
                 }
             }
