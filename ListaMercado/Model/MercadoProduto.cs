@@ -5,15 +5,11 @@ namespace Model
 {
     public class MercadoProduto
     {
-        // Chave estrangeira Mercado
-        [Key, Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        public int MercadoProdutoId { get; set; } // Criado somente para EF conseguir criar a tabela...
+
         [ForeignKey("Mercado")]
         public int MercadoId { get; set; }
-
-        // Chave estrangeira Produto
-        [Key, Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [ForeignKey("Produto")]
         public int ProdutoId { get; set; }
 
@@ -21,5 +17,6 @@ namespace Model
         public virtual Produto Produto { get; set; }
 
         public float Preco { get; set; }
+        public string DataAtualizacao { get; set; }
     }
 }

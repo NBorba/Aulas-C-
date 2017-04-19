@@ -33,6 +33,7 @@
             this.RemoverLista = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblDivider = new System.Windows.Forms.Label();
+            this.btnCompararPreco = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,13 +45,13 @@
             this.dgvListas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.VerLista,
-            this.RemoverLista});
-            this.dgvListas.Location = new System.Drawing.Point(5, 63);
-            this.dgvListas.Margin = new System.Windows.Forms.Padding(2);
+            this.RemoverLista,
+            this.btnCompararPreco});
+            this.dgvListas.Location = new System.Drawing.Point(8, 97);
             this.dgvListas.Name = "dgvListas";
             this.dgvListas.ReadOnly = true;
             this.dgvListas.RowTemplate.Height = 28;
-            this.dgvListas.Size = new System.Drawing.Size(361, 334);
+            this.dgvListas.Size = new System.Drawing.Size(674, 514);
             this.dgvListas.TabIndex = 0;
             this.dgvListas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListas_CellContentClick);
             // 
@@ -70,10 +71,9 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(11, 9);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTitle.Location = new System.Drawing.Point(16, 14);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(173, 20);
+            this.lblTitle.Size = new System.Drawing.Size(261, 29);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Suas listas de compras";
             // 
@@ -83,20 +83,26 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDivider.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblDivider.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblDivider.Location = new System.Drawing.Point(-366, 36);
+            this.lblDivider.Location = new System.Drawing.Point(-549, 55);
+            this.lblDivider.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDivider.Name = "lblDivider";
-            this.lblDivider.Size = new System.Drawing.Size(1106, 2);
+            this.lblDivider.Size = new System.Drawing.Size(1659, 3);
             this.lblDivider.TabIndex = 21;
+            // 
+            // btnCompararPreco
+            // 
+            this.btnCompararPreco.HeaderText = "Comparar Preço";
+            this.btnCompararPreco.Name = "btnCompararPreco";
+            this.btnCompararPreco.ReadOnly = true;
             // 
             // FormListagemListas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(409, 408);
+            this.ClientSize = new System.Drawing.Size(614, 628);
             this.Controls.Add(this.lblDivider);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.dgvListas);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormListagemListas";
@@ -114,5 +120,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn VerLista;
         private System.Windows.Forms.Label lblDivider;
         private System.Windows.Forms.DataGridViewButtonColumn RemoverLista;
+        private System.Windows.Forms.DataGridViewButtonColumn btnCompararPreco;
     }
 }

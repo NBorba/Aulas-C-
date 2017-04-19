@@ -1,24 +1,101 @@
 ﻿using Controller;
 using ListaMercado.Lista;
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace ListaMercado
 {
     public partial class FormPrincipal : Form
     {
-        CategoriaController categoriaController = new CategoriaController();
-        ProdutoController produtoController = new ProdutoController();
-        MercadoController mercadoController = new MercadoController();
+        private CategoriaController categoriaController = new CategoriaController();
+        private ProdutoController produtoController = new ProdutoController();
+        private MercadoController mercadoController = new MercadoController();
+        private BackgroundWorker bw = new BackgroundWorker();
 
         public FormPrincipal()
         {
             InitializeComponent();
+        }
 
-            MercadoController.BuscaECadastraProduto("Pao", 21);
+        protected override void OnLoad(EventArgs e) {
+            bw.WorkerReportsProgress = true;
+            bw.WorkerSupportsCancellation = true;
+            bw.DoWork += new DoWorkEventHandler(HandleDoWork);
+            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(HandleWorkerCompleted);
+            bw.RunWorkerAsync();
+             
+            // Mostra a label de loading enquanto processa
+            lblCarregando.Show();
 
+            // Desabilita o uso do menu enquanto carrega
+            menu.Enabled = false; 
+        }
+
+        private void HandleDoWork(object sender, DoWorkEventArgs e)
+        {
+            // DO Any work to instantiate the form
+            System.Threading.Thread.Sleep(100);
+
+            if (bw.CancellationPending)
+            {
+                e.Cancel = true;
+            }
+            else
+            {   
+                CadastraCategorias();
+                CadastraProdutos();
+                CadastraMercados();
+            }
+        }
+
+        private void HandleWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            lblCarregando.Hide();
+            menu.Enabled = true;
+        }
+
+               delegate void SetTextCallback(string text);
+
+        private void TituloLabelCarregamento(string texto)
+        {
+            // InvokeRequired compara o ID da thread chamadora
+            // com o ID thread criadora
+            // Se as threads são diferentes retorna true
+            if (this.lblCarregando.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(TituloLabelCarregamento);
+                this.Invoke(d, new object[] { texto });
+            }
+            else
+            {
+                this.lblCarregando.Text = texto;
+            }
+        }
+
+        private void cadastrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCadastroLista formCadastroLista = new FormCadastroLista();
+            formCadastroLista.MdiParent = this;
+            formCadastroLista.Show();
+            formCadastroLista.WindowState = FormWindowState.Maximized;
+        }
+
+        private void verTodasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListagemListas formListagemListas = new FormListagemListas();
+            formListagemListas.MdiParent = this;
+            formListagemListas.Show();
+            formListagemListas.WindowState = FormWindowState.Maximized;
+        }
+
+        private void CadastraCategorias()
+        {
             if (categoriaController.RetornaCategoriasBanco().Count == 0)
             {
+                // Seta o texto da label de carregamento
+                TituloLabelCarregamento("Cadastrando categorias");
+
                 categoriaController.AdicionarCategoriasIniciais("Carnes"); // Id 1
                 categoriaController.AdicionarCategoriasIniciais("Grãos"); // Id 2
                 categoriaController.AdicionarCategoriasIniciais("Produtos de higiene e limpeza"); // Id 3
@@ -31,11 +108,17 @@ namespace ListaMercado
                 categoriaController.AdicionarCategoriasIniciais("Adoçantes"); // Id 10
                 categoriaController.AdicionarCategoriasIniciais("Bebidas"); // Id 11
             }
+        }
 
+        private void CadastraProdutos()
+        {
             if (produtoController.RetornarTodosProdutosBanco().Count == 0)
             {
+                // Seta o texto da label de carregamento
+                TituloLabelCarregamento("Cadastrando produtos");
+
                 // Carnes
-                produtoController.AdicionarProdutoBanco("Carne 1Kg", 1); // Id 1
+                produtoController.AdicionarProdutoBanco("Picanha 1Kg", 1); // Id 1
                 produtoController.AdicionarProdutoBanco("Frango 1Kg", 1); // Id 2
                 produtoController.AdicionarProdutoBanco("Peixe 1Kg", 1); // Id 3
                 produtoController.AdicionarProdutoBanco("Hamburguer 1Kg", 1); // Id 4
@@ -92,30 +175,20 @@ namespace ListaMercado
                 produtoController.AdicionarProdutoBanco("Água", 11); // Id 35
                 produtoController.AdicionarProdutoBanco("Cerveja", 11); // Id 36
             }
+        }
 
+        private void CadastraMercados()
+        { 
             if (mercadoController.RetornaMercadosCadastradosBanco().Count == 0)
             {
+                // Seta o texto da label de carregamento
+                TituloLabelCarregamento("Cadastrando mercados");
+
                 mercadoController.CadastrarMercadoBanco("Jumbo"); // 1
                 mercadoController.CadastrarMercadoBanco("Continente"); // 2 
                 mercadoController.CadastrarMercadoBanco("Intermarche"); // 3 
                 mercadoController.CadastrarMercadoBanco("Pingo"); // 4 
             }
-        }
-
-        private void cadastrarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormCadastroLista formCadastroLista = new FormCadastroLista();
-            formCadastroLista.MdiParent = this;
-            formCadastroLista.Show();
-            formCadastroLista.WindowState = FormWindowState.Maximized;
-        }
-
-        private void verTodasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormListagemListas formListagemListas = new FormListagemListas();
-            formListagemListas.MdiParent = this;
-            formListagemListas.Show();
-            formListagemListas.WindowState = FormWindowState.Maximized;
         }
     }
 }

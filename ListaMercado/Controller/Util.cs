@@ -28,5 +28,10 @@ namespace Controller
 
             return resultadoObjeto.rates.BRL;
         }
+
+        public static string BuscarDataHoraAtual()
+        {
+            return String.Format("{0:dddd, MMMM d, yyyy}", DateTime.Now.ToString());
+        }
     }
 }

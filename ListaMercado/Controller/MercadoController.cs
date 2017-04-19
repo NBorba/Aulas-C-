@@ -31,6 +31,8 @@ namespace Controller
         {
             string resultadoString = "";
 
+            // TODO: Verificar conexao de internet antes de se conectar a internet
+
             // Retorna resposta de API de Mercados
             using (var clienteWeb = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
@@ -50,47 +52,51 @@ namespace Controller
         // Cadastra os produtos achados na API no Banco de Dados
         public static void BuscaECadastraProduto(string Produto, int ProdutoId)
         {
-            var DadosProduto = BuscarDadosProduto(Produto);
+            using (Contexto ctx = new Contexto()) { 
+                var DadosProduto = BuscarDadosProduto(Produto);
 
-            // Busca o ultimo valor do EURO em relação ao REAL
-            float ValorEuro = Util.BuscaValorEuro();
+                // Busca o ultimo valor do EURO em relação ao REAL
+                // TODO: Verificar conexao de internet antes de se conectar a internet
+                float ValorEuro = Util.BuscaValorEuro();
 
-            // Pra cada produto existente no resultado, cadastra o seu valor para o respectivo mercado
-            foreach (dynamic d in DadosProduto)
-            {
-                // Caso o valor de venda do produto seja zero, é inútil pra nós, não cadastra
-                if (!d.ProductUpdates[0].SalePrice.Equals(0)) { 
-                    float PrecoReais = d.ProductUpdates[0].SalePrice * ValorEuro;
-                    string Mercado = d.ProductUpdates[0].Provider.Name;
+                // Pra cada produto existente no resultado, cadastra o seu valor para o respectivo mercado
+                foreach (dynamic d in DadosProduto)
+                {
+                    // Caso o valor de venda do produto seja zero, é inútil pra nós, não cadastra
+                    if (!d.ProductUpdates[0].SalePrice.Equals(0)) { 
+                        float PrecoReais = d.ProductUpdates[0].SalePrice * ValorEuro;
+                        string Mercado = d.ProductUpdates[0].Provider.Name;
 
-                    MercadoProduto mercadoProduto = new MercadoProduto();
-                    mercadoProduto.Preco = PrecoReais;
-                    mercadoProduto.ProdutoId = ProdutoId;
+                        MercadoProduto mercadoProduto = new MercadoProduto();
+                        mercadoProduto.Preco = PrecoReais;
+                        mercadoProduto.ProdutoId = ProdutoId;
+                        mercadoProduto.DataAtualizacao = Util.BuscarDataHoraAtual();
 
-                    // Achar chave estrangeira do mercado
-                    switch (Mercado)
-                    {
-                        case "Jumbo":
-                            mercadoProduto.MercadoId = 1;
-                            break;
-                        case "Continente":
-                            mercadoProduto.MercadoId = 2;
-                            break;
-                        case "Intermarche":
-                            mercadoProduto.MercadoId = 3;
-                            break;
-                        case "Pingo":
-                            mercadoProduto.MercadoId = 4;
-                            break;
+                        // Achar chave estrangeira do mercado
+                        switch (Mercado)
+                        {
+                            case "Jumbo":
+                                mercadoProduto.MercadoId = 1;
+                                break;
+                            case "Continente":
+                                mercadoProduto.MercadoId = 2;
+                                break;
+                            case "Intermarche":
+                                mercadoProduto.MercadoId = 3;
+                                break;
+                            case "Pingo":
+                                mercadoProduto.MercadoId = 4;
+                                break;
+                        }
+                        contexto.MercadoProduto.Add(mercadoProduto);
                     }
-                    contexto.MercadoProduto.Add(mercadoProduto);
                 }
+                // Salva dados no banco depois de achar todos os produtos com valor
+                contexto.SaveChanges();
             }
-            // Salva dados no banco depois de achar todos os produtos com valor
-            contexto.SaveChanges();
         }
 
-        public void LimpaBaseDePrecos()
+        public static void LimpaBaseDePrecos()
         {
             contexto.Database.ExecuteSqlCommand("Delete From MercadoProdutoes");
         }
