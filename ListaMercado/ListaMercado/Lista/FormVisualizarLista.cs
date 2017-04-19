@@ -10,13 +10,15 @@ namespace ListaMercado.Lista
         private ListaController listaController = new ListaController();
         private EnumAcao AcaoUsuario;
         private BackgroundWorker bw = new BackgroundWorker();
+        private FormPrincipal formPrincipalReferencia;
 
-        public FormVisualizarLista(int Id, EnumAcao Acao)
+        public FormVisualizarLista(int Id, EnumAcao Acao, FormPrincipal formPrincipal)
         {
             InitializeComponent();
 
             AcaoUsuario = Acao;
             IdLista = Id;
+            formPrincipalReferencia = formPrincipal;
 
             // Libera componentes específicos para cada ação
             ControleDeComponentes();
@@ -45,6 +47,9 @@ namespace ListaMercado.Lista
                     lblTitulo.Visible = false;
                     lblTituloProdutos.Visible = false;
                     dgvProdutos.Visible = false;
+
+                   
+
                     break;
             }
         }
@@ -71,6 +76,8 @@ namespace ListaMercado.Lista
             lblTitulo.Visible = true;
             lblTituloProdutos.Visible = true;
             dgvProdutos.Visible = true;
+
+            formPrincipalReferencia.DefineTextoHoraAtualizacao();
         }
 
         delegate void SetTextCallback(string text);

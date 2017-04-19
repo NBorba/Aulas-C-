@@ -9,13 +9,17 @@ namespace ListaMercado.Lista
 {
     public partial class FormListagemListas : Form
     {
-        ListaController listaController = new ListaController();
+        private ListaController listaController = new ListaController();
+        private FormPrincipal formPrincipalReferencia;
 
-        public FormListagemListas()
+        public FormListagemListas(FormPrincipal formPrincipal)
         {
             InitializeComponent();
+
             var list = new List<ListaCompra>(listaController.RetornarListasBanco());
             var bindinglist = new BindingList<ListaCompra>(list);
+            formPrincipalReferencia = formPrincipal;
+
             dgvListas.DataSource = bindinglist;
             dgvListas.Columns[3].Visible = false;
             dgvListas.Columns[5].Visible = false;
@@ -31,7 +35,7 @@ namespace ListaMercado.Lista
                 {
                     // Ver Lista
                     case 0:
-                        FormVisualizarLista formVisualizarLista = new FormVisualizarLista(idSelecionado, EnumAcao.Visualizar);
+                        FormVisualizarLista formVisualizarLista = new FormVisualizarLista(idSelecionado, EnumAcao.Visualizar, formPrincipalReferencia);
                         formVisualizarLista.WindowState = FormWindowState.Maximized;
                         formVisualizarLista.MdiParent = FormPrincipal.ActiveForm;
                         formVisualizarLista.Show();
@@ -41,7 +45,7 @@ namespace ListaMercado.Lista
                         dgvListas.Refresh();
                         break;
                     case 2:
-                        FormVisualizarLista formCompararLista = new FormVisualizarLista(idSelecionado, EnumAcao.CompararPreco);
+                        FormVisualizarLista formCompararLista = new FormVisualizarLista(idSelecionado, EnumAcao.CompararPreco, formPrincipalReferencia);
                         formCompararLista.WindowState = FormWindowState.Maximized;
                         formCompararLista.Show();
                         break;

@@ -16,9 +16,11 @@ namespace ListaMercado
         public FormPrincipal()
         {
             InitializeComponent();
+            DefineTextoHoraAtualizacao();
         }
 
         protected override void OnLoad(EventArgs e) {
+           
             bw.WorkerReportsProgress = true;
             bw.WorkerSupportsCancellation = true;
             bw.DoWork += new DoWorkEventHandler(HandleDoWork);
@@ -55,7 +57,7 @@ namespace ListaMercado
             menu.Enabled = true;
         }
 
-               delegate void SetTextCallback(string text);
+        delegate void SetTextCallback(string text);
 
         private void TituloLabelCarregamento(string texto)
         {
@@ -83,7 +85,7 @@ namespace ListaMercado
 
         private void verTodasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormListagemListas formListagemListas = new FormListagemListas();
+            FormListagemListas formListagemListas = new FormListagemListas(this);
             formListagemListas.MdiParent = this;
             formListagemListas.Show();
             formListagemListas.WindowState = FormWindowState.Maximized;
@@ -188,6 +190,15 @@ namespace ListaMercado
                 mercadoController.CadastrarMercadoBanco("Continente"); // 2 
                 mercadoController.CadastrarMercadoBanco("Intermarche"); // 3 
                 mercadoController.CadastrarMercadoBanco("Pingo"); // 4 
+            }
+        }
+
+        public void DefineTextoHoraAtualizacao()
+        {
+            string HoraAtualizacao = MercadoController.RetornaHoraUltimaAtualizacao();
+
+            if(HoraAtualizacao != null) {
+                toolTipoHoraAtualizacao.Text = HoraAtualizacao;
             }
         }
     }

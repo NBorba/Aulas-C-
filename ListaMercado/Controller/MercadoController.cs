@@ -100,5 +100,18 @@ namespace Controller
         {
             contexto.Database.ExecuteSqlCommand("Delete From MercadoProdutoes");
         }
+
+        // Busca data de atualização do último registro
+        public static string RetornaHoraUltimaAtualizacao()
+        {
+            MercadoProduto MercadoProduto = contexto.MercadoProduto.OrderByDescending(hr => hr.DataAtualizacao).FirstOrDefault();
+            
+            if (MercadoProduto != null)
+            {
+                return MercadoProduto.DataAtualizacao;
+            }
+
+            return null;
+        }
     }
 }

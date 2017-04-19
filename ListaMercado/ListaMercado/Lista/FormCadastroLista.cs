@@ -53,7 +53,7 @@ namespace ListaMercado.Lista
             dgvAdicionados.DataSource = listaController.RetornaProdutosAdicionados();
             dgvAdicionados.Columns.Add(comboBoxQuantidade);
 
-            dgvAdicionados.Columns[1].Visible = true; // Id Produto
+            dgvAdicionados.Columns[1].Visible = false; // Id Produto
             dgvAdicionados.Columns[2].Visible = false; // Id Categoria 
             dgvAdicionados.Columns[3].ReadOnly = true; // Nome do produto
             dgvAdicionados.Columns[4].Visible = false; // Nome da Categoria 
