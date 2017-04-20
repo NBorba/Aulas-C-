@@ -12,6 +12,7 @@ namespace Controller
     public class MercadoController
     {
         private static Contexto contexto = new Contexto();
+        private MoedaController moedaController = new MoedaController();
 
         public void CadastrarMercadoBanco(string Nome)
         {
@@ -50,14 +51,14 @@ namespace Controller
         }
 
         // Cadastra os produtos achados na API no Banco de Dados
-        public static void BuscaECadastraProduto(string Produto, int ProdutoId)
+        public void BuscaECadastraProduto(string Produto, int ProdutoId)
         {
             using (Contexto ctx = new Contexto()) { 
                 var DadosProduto = BuscarDadosProduto(Produto);
 
                 // Busca o ultimo valor do EURO em relação ao REAL
                 // TODO: Verificar conexao de internet antes de se conectar a internet
-                float ValorEuro = Util.BuscaValorEuro();
+                float ValorEuro = moedaController.BuscarMoedaPorId(1).Valor; 
 
                 // Pra cada produto existente no resultado, cadastra o seu valor para o respectivo mercado
                 foreach (dynamic d in DadosProduto)

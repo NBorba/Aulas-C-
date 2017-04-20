@@ -16,11 +16,10 @@ namespace ListaMercado.Lista
         {
             InitializeComponent();
 
-            var list = new List<ListaCompra>(listaController.RetornarListasBanco());
-            var bindinglist = new BindingList<ListaCompra>(list);
+            var list = listaController.RetornarListasBanco();
             formPrincipalReferencia = formPrincipal;
 
-            dgvListas.DataSource = bindinglist;
+            dgvListas.DataSource = list;
             dgvListas.Columns[3].Visible = false;
             dgvListas.Columns[5].Visible = false;
         }
@@ -42,7 +41,8 @@ namespace ListaMercado.Lista
                         break;
                     case 1:
                         listaController.ApagarListaBanco(idSelecionado);
-                        dgvListas.Refresh();
+                        var list = listaController.RetornarListasBanco();
+                        dgvListas.DataSource = list;
                         break;
                     case 2:
                         FormVisualizarLista formCompararLista = new FormVisualizarLista(idSelecionado, EnumAcao.CompararPreco, formPrincipalReferencia);

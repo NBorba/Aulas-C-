@@ -5,9 +5,10 @@ namespace Model
 {
     public class ProdutosLista
     {
-        [Key, Column(Order = 0)]
+        [Key]
+        public int ProdutosListaID { get; set; }
+
         public int ListaCompraId { get; set; }
-        [Key, Column(Order = 1)]
         public int ProdutoId { get; set; }
 
         public virtual ListaCompra Lista { get; set; }

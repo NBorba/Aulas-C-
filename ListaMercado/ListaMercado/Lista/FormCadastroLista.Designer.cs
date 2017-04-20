@@ -34,10 +34,10 @@
             this.comboBoxCategoriaProdutos = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvAdicionados = new System.Windows.Forms.DataGridView();
-            this.Remover = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtNomeLista = new System.Windows.Forms.TextBox();
             this.lblDivider = new System.Windows.Forms.Label();
+            this.Remover = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdicionados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,6 +100,7 @@
             // 
             this.dgvAdicionados.AllowUserToAddRows = false;
             this.dgvAdicionados.AllowUserToDeleteRows = false;
+            this.dgvAdicionados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAdicionados.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvAdicionados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdicionados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -111,11 +112,6 @@
             this.dgvAdicionados.Size = new System.Drawing.Size(447, 437);
             this.dgvAdicionados.TabIndex = 17;
             this.dgvAdicionados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdicionados_CellContentClick);
-            // 
-            // Remover
-            // 
-            this.Remover.HeaderText = "Remover";
-            this.Remover.Name = "Remover";
             // 
             // lblTitle
             // 
@@ -147,6 +143,13 @@
             this.lblDivider.Name = "lblDivider";
             this.lblDivider.Size = new System.Drawing.Size(1106, 2);
             this.lblDivider.TabIndex = 20;
+            // 
+            // Remover
+            // 
+            this.Remover.HeaderText = "Remover";
+            this.Remover.Name = "Remover";
+            this.Remover.Text = "X";
+            this.Remover.UseColumnTextForButtonValue = true;
             // 
             // FormCadastroLista
             // 
@@ -181,9 +184,9 @@
         private System.Windows.Forms.ComboBox comboBoxCategoriaProdutos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvAdicionados;
-        private System.Windows.Forms.DataGridViewButtonColumn Remover;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TextBox txtNomeLista;
         private System.Windows.Forms.Label lblDivider;
+        private System.Windows.Forms.DataGridViewButtonColumn Remover;
     }
 }

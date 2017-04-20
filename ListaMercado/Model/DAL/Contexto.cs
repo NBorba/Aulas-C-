@@ -6,7 +6,7 @@ namespace Model.DAL
     {
         public Contexto() : base("strConn")
         {
-
+            Database.SetInitializer<Contexto>(new ContextoInicializador());
         }
 
         public DbSet<Produto> Produto { get; set; }
@@ -15,5 +15,6 @@ namespace Model.DAL
         public DbSet<ProdutosLista> ProdutosLista { get; set; }
         public DbSet<Mercado> Mercados { get; set; }
         public DbSet<MercadoProduto> MercadoProduto { get; set; }
+        public DbSet<Moeda> Moeda { get; set; }
     }
 }

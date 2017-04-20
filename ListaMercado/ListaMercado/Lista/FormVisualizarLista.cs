@@ -11,6 +11,7 @@ namespace ListaMercado.Lista
         private EnumAcao AcaoUsuario;
         private BackgroundWorker bw = new BackgroundWorker();
         private FormPrincipal formPrincipalReferencia;
+        private MercadoController mercadoController = new MercadoController();
 
         public FormVisualizarLista(int Id, EnumAcao Acao, FormPrincipal formPrincipal)
         {
@@ -80,7 +81,7 @@ namespace ListaMercado.Lista
             formPrincipalReferencia.DefineTextoHoraAtualizacao();
         }
 
-        delegate void SetTextCallback(string text);
+        delegate void CallbackTexto(string text);
 
         private void TituloLabelCarregamento(string texto)
         {
@@ -89,7 +90,7 @@ namespace ListaMercado.Lista
             // Se as threads são diferentes retorna true
             if (this.lblCarregando.InvokeRequired)
             {
-                SetTextCallback d = new SetTextCallback(TituloLabelCarregamento);
+                CallbackTexto d = new CallbackTexto(TituloLabelCarregamento);
                 this.Invoke(d, new object[] { texto });
             }
             else
@@ -109,50 +110,51 @@ namespace ListaMercado.Lista
             MercadoController.LimpaBaseDePrecos();
 
             // String de busca na API de preços e id do produto que está sendo cadastrado
-            MercadoController.BuscaECadastraProduto("Picanha", 1);
-            MercadoController.BuscaECadastraProduto("Frango", 2);
-            MercadoController.BuscaECadastraProduto("Peixe", 3);
-            MercadoController.BuscaECadastraProduto("Hamburguer", 4);
-            MercadoController.BuscaECadastraProduto("Arroz", 5);
-            MercadoController.BuscaECadastraProduto("Feijao", 6);
-            MercadoController.BuscaECadastraProduto("Sal", 7);
-            MercadoController.BuscaECadastraProduto("Sabao", 8);
-            MercadoController.BuscaECadastraProduto("Pasta%de%dente", 9);
-            MercadoController.BuscaECadastraProduto("Papel%higienico", 10);
-            MercadoController.BuscaECadastraProduto("Sabonete", 11);
-            MercadoController.BuscaECadastraProduto("Escova%de%dente", 12);
-            MercadoController.BuscaECadastraProduto("Detergente", 13);
-            MercadoController.BuscaECadastraProduto("Lixivia", 14); // Água sanitária
-            MercadoController.BuscaECadastraProduto("Shampoo", 15);
-            MercadoController.BuscaECadastraProduto("Dezodorizante", 16); // Desodorante
-            MercadoController.BuscaECadastraProduto("Leite%Condensado", 17);
-            MercadoController.BuscaECadastraProduto("Margarina", 18);
-
+            mercadoController.BuscaECadastraProduto("Picanha", 1);
+            mercadoController.BuscaECadastraProduto("Frango", 2);
+            mercadoController.BuscaECadastraProduto("Peixe", 3);
+            mercadoController.BuscaECadastraProduto("Hamburguer", 4);
+            mercadoController.BuscaECadastraProduto("Arroz", 5);
+            mercadoController.BuscaECadastraProduto("Feijao", 6);
+            mercadoController.BuscaECadastraProduto("Sal", 7);
+            mercadoController.BuscaECadastraProduto("Sabao", 8);
+            mercadoController.BuscaECadastraProduto("Pasta%de%dente", 9);
+            mercadoController.BuscaECadastraProduto("Papel%higienico", 10);
+            mercadoController.BuscaECadastraProduto("Sabonete", 11);
+            mercadoController.BuscaECadastraProduto("Escova%de%dente", 12);
+            mercadoController.BuscaECadastraProduto("Detergente", 13);
+            mercadoController.BuscaECadastraProduto("Lixivia", 14); // Água sanitária
+            mercadoController.BuscaECadastraProduto("Shampoo", 15);
+            mercadoController.BuscaECadastraProduto("Dezodorizante", 16); // Desodorante
+            mercadoController.BuscaECadastraProduto("Leite%Condensado", 17);
+            mercadoController.BuscaECadastraProduto("Margarina", 18);
+        
             // Atualização de carregamento
             TituloLabelCarregamento("Quase lá! Aguarde enquanto buscamos os preços pra você!");
 
-            MercadoController.BuscaECadastraProduto("Requeijao", 19);
-            MercadoController.BuscaECadastraProduto("Leite", 20);
-            MercadoController.BuscaECadastraProduto("Pão", 21);
-            MercadoController.BuscaECadastraProduto("Creme%de%leite", 22);
-            MercadoController.BuscaECadastraProduto("Oleo", 23);
-            MercadoController.BuscaECadastraProduto("Azeite", 24);
-            MercadoController.BuscaECadastraProduto("Macarrao", 25);
-            MercadoController.BuscaECadastraProduto("Massa%lasanha", 26);
-            MercadoController.BuscaECadastraProduto("Molho%de%tomate", 27);
-            MercadoController.BuscaECadastraProduto("Chocolate%em%po", 28);
-            MercadoController.BuscaECadastraProduto("Barra%de%chocolate", 29);
-            MercadoController.BuscaECadastraProduto("Farinha%de%trigo", 30);
-            MercadoController.BuscaECadastraProduto("Acucar", 31);
-            MercadoController.BuscaECadastraProduto("Adocante", 32);
-            MercadoController.BuscaECadastraProduto("Refrigerante", 33);
-
+            mercadoController.BuscaECadastraProduto("Requeijao", 19);
+            mercadoController.BuscaECadastraProduto("Leite", 20);
+            mercadoController.BuscaECadastraProduto("Pão", 21);
+            mercadoController.BuscaECadastraProduto("Creme%de%leite", 22);
+            mercadoController.BuscaECadastraProduto("Oleo", 23);
+            mercadoController.BuscaECadastraProduto("Azeite", 24);
+            mercadoController.BuscaECadastraProduto("Macarrao", 25);
+            mercadoController.BuscaECadastraProduto("Massa%lasanha", 26);
+            mercadoController.BuscaECadastraProduto("Molho%de%tomate", 27);
+            mercadoController.BuscaECadastraProduto("Chocolate%em%po", 28);
+            
+            mercadoController.BuscaECadastraProduto("Barra%de%chocolate", 29);
+            mercadoController.BuscaECadastraProduto("Farinha%de%trigo", 30);
+            mercadoController.BuscaECadastraProduto("Acucar", 31);
+            mercadoController.BuscaECadastraProduto("Adocante", 32);
+            mercadoController.BuscaECadastraProduto("Refrigerante", 33);
+        
             // Atualização de carregamento
             TituloLabelCarregamento("Finalizando busca...");
 
-            MercadoController.BuscaECadastraProduto("Sumo", 34);
-            MercadoController.BuscaECadastraProduto("Agua", 35);
-            MercadoController.BuscaECadastraProduto("Cerveja", 36);
+            mercadoController.BuscaECadastraProduto("Sumo", 34);
+            mercadoController.BuscaECadastraProduto("Agua", 35);
+            mercadoController.BuscaECadastraProduto("Cerveja", 36);
         }
     }
 }

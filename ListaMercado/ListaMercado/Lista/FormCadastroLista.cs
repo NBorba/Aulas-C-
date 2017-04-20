@@ -15,8 +15,6 @@ namespace ListaMercado.Lista
         {
             InitializeComponent();
 
-            listaController.ApagaProdutosAdicionados();
-
             DataGridViewComboBoxColumn comboBoxQuantidade = new DataGridViewComboBoxColumn();
             comboBoxQuantidade.HeaderText = "Quantidade";
             comboBoxQuantidade.Name = "comboBoxQuantidade";
@@ -47,7 +45,7 @@ namespace ListaMercado.Lista
             comboBoxQuantidade.Items.Add("24");
             comboBoxQuantidade.Items.Add("25");
 
-            comboBoxCategoriaProdutos.DataSource = categoriaController.RetornaCategoriasBanco();
+            comboBoxCategoriaProdutos.DataSource = CategoriaController.RetornaCategoriasBanco();
             comboBoxCategoriaProdutos.DisplayMember = "CategoriaNome";
 
             dgvAdicionados.DataSource = listaController.RetornaProdutosAdicionados();
@@ -91,33 +89,43 @@ namespace ListaMercado.Lista
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
+            // Nome da lista vazio
             if (String.IsNullOrEmpty(txtNomeLista.Text.Trim()))
             {
                 MessageBox.Show("O nome da lista não pode ser vazio");
             }
+            // Se não tem nenhum produto
             else if (listaController.RetornaProdutosAdicionados().Count == 0)
             {
                 MessageBox.Show("Você deve adicionar pelo menos um produto na lista de compras!");
             }
             else
             {
+                // Conta o número de produtos da lista local
                 for (int i = 0; i < listaController.RetornaProdutosAdicionados().Count; i++)
                 {
                     ProdutosLista produtosLista = new ProdutosLista();
                     produtosLista.ProdutoId = Convert.ToInt32(dgvAdicionados.Rows[i].Cells[2].Value);
-                    // Se estiver no valor nulo, muda de 0 pra 1
+
+                    // Se quantidade estiver no valor nulo, muda de 0 pra 1
                     if (Convert.ToInt32(dgvAdicionados.Rows[i].Cells[1].Value) == 0)
                     {
                         produtosLista.Quantidade = 1;
                     }
+                    // Se não pega quantidade do campo
                     else
                     {
                         produtosLista.Quantidade = Convert.ToInt32(dgvAdicionados.Rows[i].Cells[1].Value);
                     }
+                    // Cadastra o produto
                     listaController.CadastraProdutoEQuantidadeLista(produtosLista);
                 }
 
                 listaController.CadastrarListaBanco(txtNomeLista.Text.Trim(), listaController.RetornarListaProdutoEQuantidade());
+
+                // Apaga produtos da lista local já que os dados já foram cadastrados no banco.
+                listaController.ApagaProdutosAdicionados();
+
                 MessageBox.Show("Lista cadastrada com sucesso!");
                 this.Close();
             }

@@ -21,10 +21,14 @@ namespace Controller
             lista.ListaCompraNome = NomeLista;
             contexto.Listas.Add(lista);
 
-            foreach (ProdutosLista p in Produtos)
+            // Atualiza o Id da lista na chave estrangeira
+            foreach (var p in Produtos)
             {
-                contexto.ProdutosLista.Add(p);
+                p.Lista = lista;
+                p.ListaCompraId = lista.ListaCompraId;
             }
+
+           contexto.ProdutosLista.AddRange(Produtos);
            contexto.SaveChanges();
         }
 

@@ -5,11 +5,6 @@ namespace Model
 {
     public class MercadoProduto
     {
-        public MercadoProduto()
-        {
-            string DataAtualizacao = "";
-        }
-
         [Key]
         public int MercadoProdutoId { get; set; } // Criado somente para EF conseguir criar a tabela...
 
