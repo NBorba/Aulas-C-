@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoriaController.cs" />
+    <Compile Include="Interface\ICrud.cs" />
     <Compile Include="ListaController.cs" />
     <Compile Include="MercadoController.cs" />
     <Compile Include="MoedaController.cs" />

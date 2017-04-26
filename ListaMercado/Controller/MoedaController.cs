@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller.Interface;
+using Model;
 using Model.DAL;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,42 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-    public class MoedaController
+    public class MoedaController : ICrud<Moeda>
     {
+        public void AdicionarItem(Moeda moeda)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Moeda.Add(moeda);
+                contexto.SaveChanges();
+            }
+        }
+
+        public void RemoverItem(Moeda moeda)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Entry(moeda).State = System.Data.Entity.EntityState.Deleted;
+                contexto.SaveChanges();
+            }
+        }
+
+        public ICollection<Moeda> RetornarTodos()
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                return contexto.Moeda.ToList();
+            }
+        }
+
+        public Moeda BuscarMoedaPorId(int Id)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                return contexto.Moeda.Find(Id);
+            }
+        }
+
         // Busca valor da moeda e cadastra no banco
         public void AtualizaPrecoMoeda(string Nome) 
         {
@@ -18,7 +53,7 @@ namespace Controller
             moeda.NomeMoeda = Nome;
 
             // Busca todas as moedas
-            ICollection<Moeda> moedas = RetornaMoedasCadastradas();
+            ICollection<Moeda> moedas = RetornarTodos();
            
             using (Contexto contexto = new Contexto()) 
             {
@@ -50,23 +85,6 @@ namespace Controller
                         break;
                 }
                 contexto.SaveChanges();
-            }
-        }
-
-        public ICollection<Moeda> RetornaMoedasCadastradas() 
-        {
-            using (Contexto contexto = new Contexto())
-            {
-                ICollection<Moeda> moedas = contexto.Moeda.ToList();
-                return moedas;
-            } 
-        }
-
-        public Moeda BuscarMoedaPorId(int Id) 
-        {
-            using (Contexto contexto = new Contexto()) 
-            {
-                return contexto.Moeda.Find(Id); 
             }
         }
     }

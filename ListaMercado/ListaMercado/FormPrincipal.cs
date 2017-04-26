@@ -9,6 +9,7 @@ namespace ListaMercado
 {
     public partial class FormPrincipal : Form
     {
+        private CategoriaController categoriaController = new CategoriaController();
         private MoedaController moedaController = new MoedaController();
         private BackgroundWorker bw = new BackgroundWorker();
 
@@ -54,7 +55,7 @@ namespace ListaMercado
             }
             else
             {
-                CategoriaController.RetornaCategoriasBanco();
+                categoriaController.RetornarTodos();
             }
         }
 

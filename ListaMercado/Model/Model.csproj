@@ -57,7 +57,7 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="DAL\Contexto.cs" />
     <Compile Include="DAL\ContextoInicializador.cs" />
-    <Compile Include="IContexto.cs" />
+    <Compile Include="DAL\Interface\IContexto.cs" />
     <Compile Include="Moeda.cs" />
     <Compile Include="ListaCompra.cs" />
     <Compile Include="Mercado.cs" />

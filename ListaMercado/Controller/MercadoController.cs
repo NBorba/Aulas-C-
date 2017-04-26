@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Controller.Interface;
+using Model;
 using Model.DAL;
 using Newtonsoft.Json;
 using System;
@@ -9,62 +10,54 @@ using System.Net.Http;
 
 namespace Controller
 {
-    public class MercadoController
+    public class MercadoController : ICrud<Mercado>
     {
-        private static Contexto contexto = new Contexto();
         private MoedaController moedaController = new MoedaController();
 
-        public void CadastrarMercadoBanco(string Nome)
+        public void AdicionarItem(Mercado mercado)
         {
-            Mercado mercado = new Mercado();
-            mercado.MercadoNome = Nome;
-
-            contexto.Mercados.Add(mercado);
-            contexto.SaveChanges();
-        }
-
-        public ICollection<Mercado> RetornaMercadosCadastradosBanco()
-        {
-            return contexto.Mercados.ToList();
-        }
-
-        private static dynamic BuscarDadosProduto(string Produto)
-        {
-            string resultadoString = "";
-
-            // TODO: Verificar conexao de internet antes de se conectar a internet
-
-            // Retorna resposta de API de Mercados
-            using (var clienteWeb = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+            using (Contexto contexto = new Contexto())
             {
-                clienteWeb.BaseAddress = new Uri("https://maiscarrinho.com/api/");
-                HttpResponseMessage resposta = clienteWeb.GetAsync("search?q=" + Produto).Result;
-                resposta.EnsureSuccessStatusCode();
-                resultadoString = resposta.Content.ReadAsStringAsync().Result;
+                contexto.Mercados.Add(mercado);
+                contexto.SaveChanges();
+            } 
+        }
+
+        public void RemoverItem(Mercado mercado)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Entry(mercado).State = System.Data.Entity.EntityState.Deleted;
+                contexto.SaveChanges();
             }
+        }
 
-            // Realiza o Parse
-            Api resultadoObjeto = JsonConvert.DeserializeObject<Api>(resultadoString);
-
-            // Retorna os resultados da busca na api
-            return resultadoObjeto.results;
+        public ICollection<Mercado> RetornarTodos()
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                return contexto.Mercados.ToList();
+            }
         }
 
         // Cadastra os produtos achados na API no Banco de Dados
         public void BuscaECadastraProduto(string Produto, int ProdutoId)
         {
-            using (Contexto ctx = new Contexto()) { 
+            using (Contexto contexto = new Contexto())
+            {
                 var DadosProduto = BuscarDadosProduto(Produto);
 
-                // Busca o ultimo valor do EURO em relação ao REAL
                 // TODO: Verificar conexao de internet antes de se conectar a internet
-                float ValorEuro = moedaController.BuscarMoedaPorId(1).Valor; 
+
+                // Busca o ultimo valor do EURO em relação ao REAL
+                float ValorEuro = moedaController.BuscarMoedaPorId(1).Valor;
 
                 // Pra cada produto existente no resultado, cadastra o seu valor para o respectivo mercado
                 foreach (dynamic d in DadosProduto)
                 {
                     // Caso o valor de venda do produto seja zero, é inútil pra nós, não cadastra
-                    if (!d.ProductUpdates[0].SalePrice.Equals(0)) { 
+                    if (!d.ProductUpdates[0].SalePrice.Equals(0))
+                    {
                         float PrecoReais = d.ProductUpdates[0].SalePrice * ValorEuro;
                         string Mercado = d.ProductUpdates[0].Provider.Name;
 
@@ -73,7 +66,7 @@ namespace Controller
                         mercadoProduto.ProdutoId = ProdutoId;
                         mercadoProduto.DataAtualizacao = Util.BuscarDataHoraAtual();
 
-                        // Achar chave estrangeira do mercado
+                        // Achar chave estrangeira do mercado baseada no nome
                         switch (Mercado)
                         {
                             case "Jumbo":
@@ -91,28 +84,60 @@ namespace Controller
                         }
                         contexto.MercadoProduto.Add(mercadoProduto);
                     }
+                    // Salva dados no banco depois de achar todos os produtos com valor
+                    contexto.SaveChanges();
                 }
-                // Salva dados no banco depois de achar todos os produtos com valor
-                contexto.SaveChanges();
             }
         }
 
+        // Retorna lista com objetos encontrados na API de mercados 
+        private static dynamic BuscarDadosProduto(string Produto)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                string resultadoString = "";
+
+                // TODO: Verificar conexao de internet antes de se conectar a internet
+
+                // Retorna resposta de API de Mercados
+                using (var clienteWeb = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+                {
+                    clienteWeb.BaseAddress = new Uri("https://maiscarrinho.com/api/");
+                    HttpResponseMessage resposta = clienteWeb.GetAsync("search?q=" + Produto).Result;
+                    resposta.EnsureSuccessStatusCode();
+                    resultadoString = resposta.Content.ReadAsStringAsync().Result;
+                }
+
+                // Realiza o Parse
+                Api resultadoObjeto = JsonConvert.DeserializeObject<Api>(resultadoString);
+
+                // Retorna os resultados da busca na api
+                return resultadoObjeto.results;
+            }
+        }
+
+        // Limpa a base de preços 
         public static void LimpaBaseDePrecos()
         {
-            contexto.Database.ExecuteSqlCommand("Delete From MercadoProdutoes");
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Database.ExecuteSqlCommand("Delete From MercadoProdutoes");
+            }  
         }
 
-        // Busca data de atualização do último registro
+        // Busca data de atualização do último registro, para verificarmos qual foi a ultima data de atualização
         public static string RetornaHoraUltimaAtualizacao()
         {
-            MercadoProduto MercadoProduto = contexto.MercadoProduto.OrderByDescending(hr => hr.DataAtualizacao).FirstOrDefault();
-            
-            if (MercadoProduto != null)
+            using (Contexto contexto = new Contexto())
             {
-                return MercadoProduto.DataAtualizacao;
+                MercadoProduto MercadoProduto = contexto.MercadoProduto.OrderByDescending(hr => hr.DataAtualizacao).FirstOrDefault();
+            
+                if (MercadoProduto != null)
+                {
+                    return MercadoProduto.DataAtualizacao;
+                }
+                return null;
             }
-
-            return null;
         }
     }
 }

@@ -1,34 +1,49 @@
-﻿using Model;
+﻿using Controller.Interface;
+using Model;
 using Model.DAL;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Controller
 {
-    public class ProdutoController
+    public class ProdutoController : ICrud<Produto>
     {
-        private static Contexto contexto = new Contexto();
-
-        public void AdicionarProdutoBanco(string NomeProduto, int CategoriaID)
+        public void AdicionarItem(Produto produto)
         {
-            Produto Produto = new Produto();
-            Produto.ProdutoNome = NomeProduto;
-            Produto.CategoriaId = CategoriaID;
-            contexto.Produto.Add(Produto);
-            contexto.SaveChanges();
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Produto.Add(produto);
+                contexto.SaveChanges();
+            }
+        }
+
+        public void RemoverItem(Produto produto)
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                contexto.Entry(produto).State = System.Data.Entity.EntityState.Deleted;
+                contexto.SaveChanges();
+            }
+        }
+
+        public ICollection<Produto> RetornarTodos()
+        {
+            using (Contexto contexto = new Contexto())
+            {
+                return contexto.Produto.ToList();
+            }
         }
 
         public List<Produto> RetornarProdutosEspecificosBanco(int CategoriaID)
         {
-            List<Produto> produtosCategoriaUsuario = (from produto in contexto.Produto
-                                where produto.CategoriaId.Equals(CategoriaID)
-                                select produto).ToList<Produto>();
-            return produtosCategoriaUsuario;
-        }
-
-        public ICollection<Produto> RetornarTodosProdutosBanco()
-        {
-            return contexto.Produto.ToList();
+            using (Contexto contexto = new Contexto())
+            {
+                List<Produto> produtosCategoriaUsuario = (from produto in contexto.Produto
+                                                          where produto.CategoriaId.Equals(CategoriaID)
+                                                          select produto).ToList<Produto>();
+                return produtosCategoriaUsuario;
+            }
         }
     }
 }

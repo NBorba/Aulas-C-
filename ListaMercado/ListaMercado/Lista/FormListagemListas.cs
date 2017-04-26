@@ -16,7 +16,7 @@ namespace ListaMercado.Lista
         {
             InitializeComponent();
 
-            var list = listaController.RetornarListasBanco();
+            var list = listaController.RetornarTodasListas();
             formPrincipalReferencia = formPrincipal;
 
             dgvListas.DataSource = list;
@@ -41,7 +41,7 @@ namespace ListaMercado.Lista
                         break;
                     case 1:
                         listaController.ApagarListaBanco(idSelecionado);
-                        var list = listaController.RetornarListasBanco();
+                        var list = listaController.RetornarTodasListas();
                         dgvListas.DataSource = list;
                         break;
                     case 2:

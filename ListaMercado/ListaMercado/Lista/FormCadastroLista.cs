@@ -45,7 +45,7 @@ namespace ListaMercado.Lista
             comboBoxQuantidade.Items.Add("24");
             comboBoxQuantidade.Items.Add("25");
 
-            comboBoxCategoriaProdutos.DataSource = CategoriaController.RetornaCategoriasBanco();
+            comboBoxCategoriaProdutos.DataSource = categoriaController.RetornarTodos();
             comboBoxCategoriaProdutos.DisplayMember = "CategoriaNome";
 
             dgvAdicionados.DataSource = listaController.RetornaProdutosAdicionados();
@@ -121,7 +121,7 @@ namespace ListaMercado.Lista
                     listaController.CadastraProdutoEQuantidadeLista(produtosLista);
                 }
 
-                listaController.CadastrarListaBanco(txtNomeLista.Text.Trim(), listaController.RetornarListaProdutoEQuantidade());
+                listaController.AdicionarLista(txtNomeLista.Text.Trim(), listaController.RetornarListaLocalProdQuant());
 
                 // Apaga produtos da lista local já que os dados já foram cadastrados no banco.
                 listaController.ApagaProdutosAdicionados();
