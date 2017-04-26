@@ -13,7 +13,6 @@ namespace Controller
     public class MercadoController : ICrud<Mercado>
     {
         private MoedaController moedaController = new MoedaController();
-
         public void AdicionarItem(Mercado mercado)
         {
             using (Contexto contexto = new Contexto())

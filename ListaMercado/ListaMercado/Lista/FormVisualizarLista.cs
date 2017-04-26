@@ -48,9 +48,6 @@ namespace ListaMercado.Lista
                     lblTitulo.Visible = false;
                     lblTituloProdutos.Visible = false;
                     dgvProdutos.Visible = false;
-
-                   
-
                     break;
             }
         }
@@ -77,6 +74,19 @@ namespace ListaMercado.Lista
             lblTitulo.Visible = true;
             lblTituloProdutos.Visible = true;
             dgvProdutos.Visible = true;
+            lblTituloReportTotal.Visible = true;
+            lblTituloReportGeral.Visible = true;
+
+            // TODO: This line of code loads data into the 'dadosTotais.Mercadoes' table. You can move, or remove it, as needed.
+            this.mercadoesTableAdapter1.Fill(this.dadosTotais.Mercadoes);
+            // TODO: This line of code loads data into the 'dadosGerais.Mercadoes' table. You can move, or remove it, as needed.
+            this.mercadoesTableAdapter.Fill(this.dadosGerais.Mercadoes);
+
+            this.reportGerais.RefreshReport();
+            this.reportTotal.RefreshReport();
+
+            reportGerais.Visible = true;
+            reportTotal.Visible = true;
 
             formPrincipalReferencia.DefineTextoHoraAtualizacao();
         }
@@ -155,6 +165,11 @@ namespace ListaMercado.Lista
             mercadoController.BuscaECadastraProduto("Sumo", 34);
             mercadoController.BuscaECadastraProduto("Agua", 35);
             mercadoController.BuscaECadastraProduto("Cerveja", 36);
+        }
+
+        private void FormVisualizarLista_Load(object sender, System.EventArgs e)
+        {
+           
         }
     }
 }

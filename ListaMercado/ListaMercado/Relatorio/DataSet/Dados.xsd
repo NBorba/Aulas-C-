@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Dados" targetNamespace="http://tempuri.org/Dados.xsd" xmlns:mstns="http://tempuri.org/Dados.xsd" xmlns="http://tempuri.org/Dados.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ListaSupermercadoConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ListaSupermercadoConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ListaMercado.Properties.Settings.GlobalReference.Default.ListaSupermercadoConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MercadoesTableAdapter" GeneratorDataComponentClassName="MercadoesTableAdapter" Name="Mercadoes" UserDataComponentName="MercadoesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ListaSupermercadoConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>-- Dados gerais e médias de preço pra cada produto de um mercado
+SELECT MERC.MercadoNome, PROD.ProdutoNome, PL.Quantidade, AVG(MP.Preco)[MediaPreco], MP.DataAtualizacao 
+FROM dbo.Mercadoes MERC
+INNER JOIN MercadoProdutoes MP ON (MP.MercadoId = MERC.MercadoId)
+INNER JOIN Produtoes PROD ON (PROD.ProdutoId = MP.ProdutoId)
+INNER JOIN ProdutosListas PL ON (PL.ProdutoId = PROD.ProdutoId)
+INNER JOIN ListaCompras LC ON (LC.ListaCompraId = PL.ListaCompraId)
+INNER JOIN Categorias CAT ON (PROD.CategoriaId = CAT.CategoriaId)
+WHERE LC.ListaCompraId = 4
+GROUP BY MERC.MercadoNome, PROD.ProdutoNome, LC.ListaCompraNome, PL.Quantidade,MP.DataAtualizacao</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="MercadoNome" DataSetColumn="MercadoNome" />
+              <Mapping SourceColumn="ProdutoNome" DataSetColumn="ProdutoNome" />
+              <Mapping SourceColumn="Quantidade" DataSetColumn="Quantidade" />
+              <Mapping SourceColumn="MediaPreco" DataSetColumn="MediaPreco" />
+              <Mapping SourceColumn="DataAtualizacao" DataSetColumn="DataAtualizacao" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Dados" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Dados" msprop:Generator_UserDSName="Dados">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Mercadoes" msprop:Generator_TableClassName="MercadoesDataTable" msprop:Generator_TableVarName="tableMercadoes" msprop:Generator_TablePropName="Mercadoes" msprop:Generator_RowDeletingName="MercadoesRowDeleting" msprop:Generator_RowChangingName="MercadoesRowChanging" msprop:Generator_RowEvHandlerName="MercadoesRowChangeEventHandler" msprop:Generator_RowDeletedName="MercadoesRowDeleted" msprop:Generator_UserTableName="Mercadoes" msprop:Generator_RowChangedName="MercadoesRowChanged" msprop:Generator_RowEvArgName="MercadoesRowChangeEvent" msprop:Generator_RowClassName="MercadoesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MercadoNome" msprop:Generator_ColumnVarNameInTable="columnMercadoNome" msprop:Generator_ColumnPropNameInRow="MercadoNome" msprop:Generator_ColumnPropNameInTable="MercadoNomeColumn" msprop:Generator_UserColumnName="MercadoNome" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProdutoNome" msprop:Generator_ColumnVarNameInTable="columnProdutoNome" msprop:Generator_ColumnPropNameInRow="ProdutoNome" msprop:Generator_ColumnPropNameInTable="ProdutoNomeColumn" msprop:Generator_UserColumnName="ProdutoNome" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Quantidade" msprop:Generator_ColumnVarNameInTable="columnQuantidade" msprop:Generator_ColumnPropNameInRow="Quantidade" msprop:Generator_ColumnPropNameInTable="QuantidadeColumn" msprop:Generator_UserColumnName="Quantidade" type="xs:int" />
+              <xs:element name="MediaPreco" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMediaPreco" msprop:Generator_ColumnPropNameInRow="MediaPreco" msprop:Generator_ColumnPropNameInTable="MediaPrecoColumn" msprop:Generator_UserColumnName="MediaPreco" type="xs:double" minOccurs="0" />
+              <xs:element name="DataAtualizacao" msprop:Generator_ColumnVarNameInTable="columnDataAtualizacao" msprop:Generator_ColumnPropNameInRow="DataAtualizacao" msprop:Generator_ColumnPropNameInTable="DataAtualizacaoColumn" msprop:Generator_UserColumnName="DataAtualizacao" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
