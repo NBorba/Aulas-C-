@@ -26,6 +26,7 @@ namespace Controller
                     p.ListaCompraId = lista.ListaCompraId;
                 }
 
+                // Adiciona chave estrangeira no banco
                 contexto.ProdutosLista.AddRange(Produtos);
                 contexto.SaveChanges();
             }
@@ -39,6 +40,7 @@ namespace Controller
             }
         }
 
+        // Retorna produtos e suas quantidades definidas pelo usuário de uma lista de compra específica
         public IEnumerable<dynamic> RetornaProdutosListaBanco(int IdLista)
         {
             return BuscaProdutoQuantidadeListaPorId(IdLista);
@@ -60,11 +62,13 @@ namespace Controller
             }
         }
 
+        // Busca lista por ID
         public ListaCompra RetornaListaEspecifica(int IdLista)
         {
             return BuscarListaPorId(IdLista);
         }
 
+        // Busca lista por ID
         private ListaCompra BuscarListaPorId(int IdLista)
         {
             using (Contexto contexto = new Contexto())

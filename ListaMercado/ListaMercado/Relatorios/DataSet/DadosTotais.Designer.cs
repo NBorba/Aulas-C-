@@ -783,31 +783,29 @@ namespace ListaMercado.Relatorios.DataSet.DadosTotaisTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"-- Preço total Mercados
-WITH CTE as(
-	SELECT MERC.MercadoNome, PROD.ProdutoNome, PL.Quantidade, AVG(MP.Preco) AS MEDIA, MP.DataAtualizacao 
-	FROM dbo.Mercadoes MERC
-	INNER JOIN MercadoProdutoes MP ON (MP.MercadoId = MERC.MercadoId)
-	INNER JOIN Produtoes PROD ON (PROD.ProdutoId = MP.ProdutoId)
-	INNER JOIN ProdutosListas PL ON (PL.ProdutoId = PROD.ProdutoId)
-	INNER JOIN ListaCompras LC ON (LC.ListaCompraId = PL.ListaCompraId)
-	INNER JOIN Categorias CAT ON (PROD.CategoriaId = CAT.CategoriaId)
-	WHERE LC.ListaCompraId = 2
-	GROUP BY MERC.MercadoNome, PROD.ProdutoNome, LC.ListaCompraNome, PL.Quantidade,MP.DataAtualizacao
-)
-SELECT C.MercadoNome, SUM(MEDIA) TotalMercado
-FROM CTE C
-GROUP BY C.MercadoNome
-ORDER BY TotalMercado";
+            this._commandCollection[0].CommandText = @"WITH CTE AS (SELECT        MERC.MercadoNome, PROD.ProdutoNome, PL.Quantidade, AVG(MP.Preco) AS MEDIA, MP.DataAtualizacao
+                               FROM            Mercadoes AS MERC INNER JOIN
+                                                         MercadoProdutoes AS MP ON MP.MercadoId = MERC.MercadoId INNER JOIN
+                                                         Produtoes AS PROD ON PROD.ProdutoId = MP.ProdutoId INNER JOIN
+                                                         ProdutosListas AS PL ON PL.ProdutoId = PROD.ProdutoId INNER JOIN
+                                                         ListaCompras AS LC ON LC.ListaCompraId = PL.ListaCompraId INNER JOIN
+                                                         Categorias AS CAT ON PROD.CategoriaId = CAT.CategoriaId
+                               WHERE        (LC.ListaCompraId = @listaCompraID)
+                               GROUP BY MERC.MercadoNome, PROD.ProdutoNome, LC.ListaCompraNome, PL.Quantidade, MP.DataAtualizacao)
+    SELECT        MercadoNome, CONVERT(FLOAT, SUM(MEDIA)) AS TotalMercado
+     FROM            CTE AS C
+     GROUP BY MercadoNome";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@listaCompraID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DadosTotais.MercadoesDataTable dataTable) {
+        public virtual int Fill(DadosTotais.MercadoesDataTable dataTable, int listaCompraID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(listaCompraID));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -819,8 +817,9 @@ ORDER BY TotalMercado";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DadosTotais.MercadoesDataTable GetData() {
+        public virtual DadosTotais.MercadoesDataTable GetData(int listaCompraID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(listaCompraID));
             DadosTotais.MercadoesDataTable dataTable = new DadosTotais.MercadoesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

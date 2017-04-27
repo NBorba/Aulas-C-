@@ -118,7 +118,7 @@
     <EmbeddedResource Include="Lista\FormVisualizarLista.resx">
       <DependentUpon>FormVisualizarLista.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Relatorios\ReportTotal.rdlc" />
+    <EmbeddedResource Include="Relatorios\ReportTotais.rdlc" />
     <EmbeddedResource Include="Relatorios\ReportGerais.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

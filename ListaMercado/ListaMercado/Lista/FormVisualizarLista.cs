@@ -7,10 +7,10 @@ namespace ListaMercado.Lista
     public partial class FormVisualizarLista : Form
     {
         private int IdLista;
-        private ListaController listaController = new ListaController();
         private EnumAcao AcaoUsuario;
-        private BackgroundWorker bw = new BackgroundWorker();
         private FormPrincipal formPrincipalReferencia;
+        private BackgroundWorker bw = new BackgroundWorker();
+        private ListaController listaController = new ListaController();
         private MercadoController mercadoController = new MercadoController();
 
         public FormVisualizarLista(int Id, EnumAcao Acao, FormPrincipal formPrincipal)
@@ -24,7 +24,10 @@ namespace ListaMercado.Lista
             // Libera componentes específicos para cada ação
             ControleDeComponentes();
 
+            // Define o título
             lblTitulo.Text = listaController.RetornaListaEspecifica(IdLista).ListaCompraNome.ToString();
+
+            // Busca os produtos da lista chamada pelo usuário
             dgvProdutos.DataSource = listaController.RetornaProdutosListaBanco(IdLista);
         }
 
@@ -36,6 +39,8 @@ namespace ListaMercado.Lista
                     break;
 
                 case EnumAcao.CompararPreco:
+                    
+                    // Processo no background de carregamento de dados
                     bw.WorkerReportsProgress = true;
                     bw.WorkerSupportsCancellation = true;
                     bw.DoWork += new DoWorkEventHandler(HandleDoWork);
@@ -69,7 +74,10 @@ namespace ListaMercado.Lista
 
         private void HandleWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            // Esconde label de carregamento
             lblCarregando.Hide();
+
+            // Torna visível os componentes
             lblDivider.Visible = true;
             lblTitulo.Visible = true;
             lblTituloProdutos.Visible = true;
@@ -77,17 +85,21 @@ namespace ListaMercado.Lista
             lblTituloReportTotal.Visible = true;
             lblTituloReportGeral.Visible = true;
 
-            // TODO: This line of code loads data into the 'dadosTotais.Mercadoes' table. You can move, or remove it, as needed.
-            this.mercadoesTableAdapter1.Fill(this.dadosTotais.Mercadoes);
-            // TODO: This line of code loads data into the 'dadosGerais.Mercadoes' table. You can move, or remove it, as needed.
-            this.mercadoesTableAdapter.Fill(this.dadosGerais.Mercadoes);
+            // Preenche o relatório de dados gerais com os dados
+            this.mercadoesTableAdapter.Fill(this.dadosGerais.Mercadoes, IdLista);
 
+            // Preenche o relatório de dados totais com os dados
+            this.mercadoesTableAdapter1.Fill(this.dadosTotais.Mercadoes, IdLista);
+
+            // Atualiza os relatórios
             this.reportGerais.RefreshReport();
             this.reportTotal.RefreshReport();
 
+            // Mostra os relatórios na tela
             reportGerais.Visible = true;
             reportTotal.Visible = true;
 
+            // Atualiza componente de texto com a ultima data de atualização de preços
             formPrincipalReferencia.DefineTextoHoraAtualizacao();
         }
 
@@ -165,11 +177,6 @@ namespace ListaMercado.Lista
             mercadoController.BuscaECadastraProduto("Sumo", 34);
             mercadoController.BuscaECadastraProduto("Agua", 35);
             mercadoController.BuscaECadastraProduto("Cerveja", 36);
-        }
-
-        private void FormVisualizarLista_Load(object sender, System.EventArgs e)
-        {
-           
         }
     }
 }

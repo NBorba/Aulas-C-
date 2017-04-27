@@ -19,6 +19,7 @@ namespace ListaMercado.Lista
             var list = listaController.RetornarTodasListas();
             formPrincipalReferencia = formPrincipal;
 
+            // Mostra todas as listas encontradas no banco
             dgvListas.DataSource = list;
             dgvListas.Columns[3].Visible = false;
             dgvListas.Columns[5].Visible = false;
@@ -39,11 +40,13 @@ namespace ListaMercado.Lista
                         formVisualizarLista.MdiParent = FormPrincipal.ActiveForm;
                         formVisualizarLista.Show();
                         break;
+                    // Apagar lista
                     case 1:
                         listaController.ApagarListaBanco(idSelecionado);
                         var list = listaController.RetornarTodasListas();
                         dgvListas.DataSource = list;
                         break;
+                    // Comparar preço
                     case 2:
                         FormVisualizarLista formCompararLista = new FormVisualizarLista(idSelecionado, EnumAcao.CompararPreco, formPrincipalReferencia);
                         formCompararLista.WindowState = FormWindowState.Maximized;

@@ -11,7 +11,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.73229cm</Height>
+              <Height>0.6cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -52,7 +52,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.73229cm</Height>
+              <Height>0.6cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -63,7 +63,19 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!TotalMercado.Value)</Value>
+                              <Value>=SUM(Fields!TotalMercado.Value)</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <Color>#4d4d4d</Color>
@@ -139,6 +151,7 @@
               <TablixMembers>
                 <TablixMember />
               </TablixMembers>
+              <KeepWithGroup>After</KeepWithGroup>
             </TablixMember>
             <TablixMember>
               <Group Name="MercadoNome">
@@ -193,8 +206,8 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DSTotal</DataSetName>
-        <Height>1.46458cm</Height>
+        <DataSetName>DadosTotais</DataSetName>
+        <Height>1.2cm</Height>
         <Width>16.51cm</Width>
         <Style>
           <Border>
@@ -219,18 +232,18 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="DadosTotal">
+    <DataSource Name="DadosTotais">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>9403aaa1-e18b-45b7-86ae-2d937370455a</rd:DataSourceID>
+      <rd:DataSourceID>5b4ad3d4-df57-4761-aa20-a60e70a99382</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DSTotal">
+    <DataSet Name="DadosTotais">
       <Query>
-        <DataSourceName>DadosTotal</DataSourceName>
+        <DataSourceName>DadosTotais</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -240,12 +253,12 @@
         </Field>
         <Field Name="TotalMercado">
           <DataField>TotalMercado</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>DadosTotal</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\1601129\Desktop\GitHub\Aulas-C-\ListaMercado\ListaMercado\Relatorio\DadosTotal.xsd</rd:SchemaPath>
+        <rd:DataSetName>DadosTotais</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\1601129\Desktop\GitHub\Aulas-C-\ListaMercado\ListaMercado\Relatorios\DataSet\DadosTotais.xsd</rd:SchemaPath>
         <rd:TableName>Mercadoes</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -254,5 +267,5 @@
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>60205293-6e33-48f6-a4ee-d3facf18f2a1</rd:ReportID>
+  <rd:ReportID>e122e0ce-efb2-4aee-9094-eaf5356c3453</rd:ReportID>
 </Report>

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.mercadoesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dadosGeraisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dadosGerais = new ListaMercado.Relatorios.DataSet.DadosGerais();
@@ -137,9 +137,9 @@
             // 
             // reportGerais
             // 
-            reportDataSource3.Name = "DadosGerais";
-            reportDataSource3.Value = this.mercadoesBindingSource1;
-            this.reportGerais.LocalReport.DataSources.Add(reportDataSource3);
+            reportDataSource1.Name = "DadosGerais";
+            reportDataSource1.Value = this.mercadoesBindingSource1;
+            this.reportGerais.LocalReport.DataSources.Add(reportDataSource1);
             this.reportGerais.LocalReport.ReportEmbeddedResource = "ListaMercado.Relatorios.ReportGerais.rdlc";
             this.reportGerais.Location = new System.Drawing.Point(445, 75);
             this.reportGerais.Name = "reportGerais";
@@ -149,10 +149,10 @@
             // 
             // reportTotal
             // 
-            reportDataSource4.Name = "DadosTotais";
-            reportDataSource4.Value = this.MercadoesBindingSource;
-            this.reportTotal.LocalReport.DataSources.Add(reportDataSource4);
-            this.reportTotal.LocalReport.ReportEmbeddedResource = "ListaMercado.Relatorios.ReportTotal.rdlc";
+            reportDataSource2.Name = "DadosTotais";
+            reportDataSource2.Value = this.MercadoesBindingSource;
+            this.reportTotal.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportTotal.LocalReport.ReportEmbeddedResource = "ListaMercado.Relatorios.ReportTotais.rdlc";
             this.reportTotal.Location = new System.Drawing.Point(445, 402);
             this.reportTotal.Name = "reportTotal";
             this.reportTotal.Size = new System.Drawing.Size(631, 265);
@@ -224,7 +224,6 @@
             this.MinimizeBox = false;
             this.Name = "FormVisualizarLista";
             this.Text = "FormVisualizarLista";
-            this.Load += new System.EventHandler(this.FormVisualizarLista_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mercadoesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dadosGeraisBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dadosGerais)).EndInit();

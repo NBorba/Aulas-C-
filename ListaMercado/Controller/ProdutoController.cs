@@ -35,14 +35,14 @@ namespace Controller
             }
         }
 
-        public List<Produto> RetornarProdutosEspecificosBanco(int CategoriaID)
+        // Retorna produtos de uma certa categoria
+        public ICollection<Produto> RetornarProdutosEspecificosBanco(int CategoriaID)
         {
             using (Contexto contexto = new Contexto())
             {
-                List<Produto> produtosCategoriaUsuario = (from produto in contexto.Produto
-                                                          where produto.CategoriaId.Equals(CategoriaID)
-                                                          select produto).ToList<Produto>();
-                return produtosCategoriaUsuario;
+                return (from produto in contexto.Produto
+                        where produto.CategoriaId.Equals(CategoriaID)
+                        select produto).ToList<Produto>();
             }
         }
     }
